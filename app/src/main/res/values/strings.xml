@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WanAndroid</string>
+
+
+    <string name="reload">Reload</string>
+    <string name="double_click_exit_tint">Press the back button again to exit the GeeksAndroid</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="reload">重新加载</string>
+    <string name="double_click_exit_tint">再按一次后退键退出GeeksAndroid</string>
+</resources>

@@ -1,0 +1,109 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <!-- 普通的字体大小-->
+    <dimen name="text_size">14sp</dimen>
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <!--适用于dialog的标题-->
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
+    <!--边距-->
+    <dimen name="space">16dp</dimen>
+    <!--产品详情页ViewPager指示器的大小-->
+    <dimen name="product_vp_indicator_radius">4dp</dimen>
+    <dimen name="product_vp_indicator_margin">10dp</dimen>
+    <!-- 页面元素的上下margin值 -->
+    <dimen name="item_space">10dp</dimen>
+    <!-- 只包含一行普通文字的条目高度 -->
+    <dimen name="text_item_size">45dp</dimen>
+    <!-- cardview阴影宽度 -->
+    <dimen name="elevation_size">2dp</dimen>
+    <!--dialog title 高度-->
+    <dimen name="dialog_title_size">50dp</dimen>
+    <!--dialog左右边距-->
+    <dimen name="dialog_margin">26dp</dimen>
+    <!--按钮圆角大小-->
+    <dimen name="button_bg_radius">4dp</dimen>
+    <dimen name="statusbar_view_height">25dp</dimen>
+    <!-- ========公用大小数值=========== -->
+    <dimen name="size_00dp">0dp</dimen>
+    <dimen name="size_0.1dp">0.1dp</dimen>
+    <dimen name="size_0.2dp">0.2dp</dimen>
+    <dimen name="size_0.5dp">0.5dp</dimen>
+    <dimen name="size_01dp">1dp</dimen>
+    <dimen name="size_02dp">2dp</dimen>
+    <dimen name="size_03dp">3dp</dimen>
+    <dimen name="size_04dp">4dp</dimen>
+    <dimen name="size_05dp">5dp</dimen>
+    <dimen name="size_06dp">6dp</dimen>
+    <dimen name="size_07dp">7dp</dimen>
+    <dimen name="size_08dp">8dp</dimen>
+    <dimen name="size_09dp">9dp</dimen>
+    <dimen name="size_10dp">10dp</dimen>
+    <dimen name="size_11dp">11dp</dimen>
+    <dimen name="size_12dp">12dp</dimen>
+    <dimen name="size_13dp">13dp</dimen>
+    <dimen name="size_14dp">14dp</dimen>
+    <dimen name="size_15dp">15dp</dimen>
+    <dimen name="size_16dp">16dp</dimen>
+    <dimen name="size_17dp">17dp</dimen>
+    <dimen name="size_18dp">18dp</dimen>
+    <dimen name="size_19dp">19dp</dimen>
+    <dimen name="size_20dp">20dp</dimen>
+    <dimen name="size_21dp">21dp</dimen>
+    <dimen name="size_22dp">22dp</dimen>
+    <dimen name="size_23dp">23dp</dimen>
+    <dimen name="size_24dp">24dp</dimen>
+    <dimen name="size_25dp">25dp</dimen>
+    <dimen name="size_26dp">26dp</dimen>
+    <dimen name="size_27dp">27dp</dimen>
+    <dimen name="size_28dp">28dp</dimen>
+    <dimen name="size_29dp">29dp</dimen>
+    <dimen name="size_30dp">30dp</dimen>
+    <dimen name="size_32dp">32dp</dimen>
+    <dimen name="size_34dp">34dp</dimen>
+    <dimen name="size_35dp">35dp</dimen>
+    <dimen name="size_36dp">36dp</dimen>
+    <dimen name="size_38dp">38dp</dimen>
+    <dimen name="size_40dp">40dp</dimen>
+    <dimen name="size_41dp">41dp</dimen>
+    <dimen name="size_45dp">45dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_50dp">50dp</dimen>
+    <dimen name="size_55dp">55dp</dimen>
+    <dimen name="size_58dp">58dp</dimen>
+    <dimen name="size_60dp">60dp</dimen>
+    <dimen name="size_62dp">62dp</dimen>
+    <dimen name="size_64dp">64dp</dimen>
+    <dimen name="size_65dp">65dp</dimen>
+    <dimen name="size_68dp">68dp</dimen>
+    <dimen name="size_70dp">70dp</dimen>
+    <dimen name="size_72dp">72dp</dimen>
+    <dimen name="size_78dp">78dp</dimen>
+    <dimen name="size_80dp">80dp</dimen>
+    <dimen name="size_85dp">85dp</dimen>
+    <dimen name="size_90dp">90dp</dimen>
+    <dimen name="size_s_100dp">100dp</dimen>
+    <dimen name="size_s_110dp">110dp</dimen>
+    <dimen name="size_s_120dp">120dp</dimen>
+    <dimen name="size_s_130dp">130dp</dimen>
+    <dimen name="size_s_140dp">140dp</dimen>
+    <dimen name="size_s_142dp">142dp</dimen>
+    <dimen name="size_s_150dp">150dp</dimen>
+    <dimen name="size_s_160dp">160dp</dimen>
+    <dimen name="size_s_180dp">180dp</dimen>
+    <dimen name="size_s_200dp">200dp</dimen>
+    <dimen name="size_s_220dp">220dp</dimen>
+    <dimen name="size_s_224dp">224dp</dimen>
+    <dimen name="size_s_240dp">240dp</dimen>
+    <dimen name="size_s_375dp">375dp</dimen>
+
+    <!--ViewPagerIndicator-->
+    <dimen name="default_circle_indicator_radius">3dp</dimen>
+    <dimen name="default_circle_indicator_stroke_width">0dp</dimen>
+</resources>
