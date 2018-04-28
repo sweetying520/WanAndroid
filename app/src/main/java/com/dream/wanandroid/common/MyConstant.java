@@ -2,12 +2,19 @@ package com.dream.wanandroid.common;
 
 import android.graphics.Color;
 
+import com.dream.wanandroid.WanAndroidApp;
+
+import java.io.File;
+
 /**
  * App常量存放处
  * Created by Administrator on 2018/4/27.
  */
 
 public class MyConstant {
+
+
+    public static String CHACHE_PATH = WanAndroidApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "WanAndroidCache";
 
     /**
      * Tab colors

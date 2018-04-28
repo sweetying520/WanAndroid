@@ -41,6 +41,17 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
     implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
 
+    //net
+    //net
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
     //UI
     implementation "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
     implementation "me.yokeyword:fragmentation-swipeback:$rootProject.fragmentationVersion"
