@@ -9,8 +9,8 @@
         <item name="android:windowAnimationStyle">@style/windowAnimation</item>
 
         <!--沉浸式-->
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+       <!-- <item name="android:windowIsTranslucent">true</item>-->
+      <!--  <item name="android:windowTranslucentStatus">true</item>-->
     </style>
 
     <style name="windowAnimation">
@@ -19,6 +19,8 @@
         <item name="android:activityCloseEnterAnimation">@anim/push_let_in</item>
         <item name="android:activityCloseExitAnimation">@anim/push_left_out</item>
     </style>
+
+
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

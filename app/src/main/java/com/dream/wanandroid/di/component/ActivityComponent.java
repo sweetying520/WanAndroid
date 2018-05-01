@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.dream.wanandroid.di.module.ActivityModule;
 import com.dream.wanandroid.di.scope.ActivityScope;
+import com.dream.wanandroid.ui.main.activity.SplashActivity;
 import com.dream.wanandroid.ui.mainpager.activity.MainActivity;
 
 import dagger.Component;
@@ -24,10 +25,17 @@ public interface ActivityComponent {
     Activity getActivity();
 
     /**
-     * 注入MAinActivity所需的依赖
+     * 注入SplashActivity所需的依赖
      *
-     * @param  mActivity
+     * @param  splashActivity
      */
-    void inject(Activity mActivity);
+    void inject(SplashActivity splashActivity);
+
+    /**
+     * 注入SplashActivity所需的依赖
+     *
+     * @param  mainActivity
+     */
+    void inject(MainActivity mainActivity);
 
 }

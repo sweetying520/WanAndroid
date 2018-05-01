@@ -1,8 +1,6 @@
 package com.dream.wanandroid.base.activity;
 
 
-import android.view.AbsSavedState;
-
 import com.dream.wanandroid.WanAndroidApp;
 import com.dream.wanandroid.base.presenter.IBasePresenter;
 import com.dream.wanandroid.base.view.IBaseView;
@@ -10,21 +8,25 @@ import com.dream.wanandroid.di.component.ActivityComponent;
 import com.dream.wanandroid.di.component.DaggerActivityComponent;
 import com.dream.wanandroid.di.module.ActivityModule;
 
+import javax.inject.Inject;
+
 /**
  * Created by Administrator on 2018/4/27.
  */
 
 public abstract class BaseActivity <P extends IBasePresenter> extends AbstractSimpleActivity implements IBaseView{
 
+    @Inject
     protected P mPresenter;
 
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if(mPresenter != null){
             mPresenter.detachView();
         }
+        super.onDestroy();
+
     }
 
     @Override

@@ -9,4 +9,9 @@
     <string name="knowledge_hierarchy">Knowledge hierarchy</string>
     <string name="navigation">Navigation</string>
     <string name="project">Project</string>
+
+    <string name="collect">Collection</string>
+    <string name="setting">Setting</string>
+    <string name="about">About</string>
+    <string name="logout">Log out</string>
 </resources>

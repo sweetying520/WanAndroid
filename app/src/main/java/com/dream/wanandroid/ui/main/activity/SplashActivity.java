@@ -53,7 +53,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             return;
         }
 
-        StatusBarUtil.setTranslucent(this,0);
+        StatusBarUtil.setTranslucentForImageView(this,0,null);
         WanAndroidApp.isFirstRun = true;
         mOneAnimation.setAnimation("W.json");
         mOneAnimation.playAnimation();

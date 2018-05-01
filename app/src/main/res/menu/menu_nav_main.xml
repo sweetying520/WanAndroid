@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/home"
-        android:enabled="true"
-        android:icon="@drawable/icon_home_pager_not_selected"
-        android:title="@string/home"
-        app:showAsAction="ifRoom" />
+    <group
+        android:id="@+id/other"
+        android:checkableBehavior="single">
 
-    <item
-        android:id="@+id/tab_knowledge_hierarchy"
-        android:enabled="true"
-        android:icon="@drawable/icon_knowledge_hierarchy_not_selected"
-        android:title="@string/knowledge_hierarchy"
-        app:showAsAction="ifRoom" />
+        <item android:id="@+id/wanandroid"
+            android:title="@string/app_name"
+            android:icon="@drawable/ic_wan_android"
+            android:checkable="true"
+            android:checked="true"/>
 
-    <item
-        android:id="@+id/tab_navigation"
-        android:enabled="true"
-        android:icon="@drawable/icon_navigation_not_selected"
-        android:title="@string/navigation"
-        app:showAsAction="ifRoom" />
+        <item android:id="@+id/collect"
+            android:title="@string/collect"
+            android:icon="@drawable/icon_like"
+            android:checkable="true" />
 
-    <item
-        android:id="@+id/tab_project"
-        android:enabled="true"
-        android:icon="@drawable/icon_project_not_selected"
-        android:title="@string/project"
-        app:showAsAction="ifRoom" />
+        <item android:id="@+id/setting"
+            android:title="@string/setting"
+            android:icon="@drawable/ic_setting"
+            android:checkable="true" />
 
+        <item android:id="@+id/about"
+        android:title="@string/about"
+            android:checkable="false"
+        android:icon="@drawable/ic_about"/>
+
+        <item android:id="@+id/logout"
+            android:title="@string/logout"
+            android:checkable="false"
+            android:icon="@drawable/ic_logout"/>
+
+
+    </group>
 
 </menu>

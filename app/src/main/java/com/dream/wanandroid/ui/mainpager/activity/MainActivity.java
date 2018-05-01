@@ -3,6 +3,7 @@ package com.dream.wanandroid.ui.mainpager.activity;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     FloatingActionButton fabMain;
     @BindView(R.id.bottom_nav_view)
     BottomNavigationView bottomNavView;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
 
     @Override
     protected void initEventAndData() {
@@ -37,7 +40,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initToolbar() {
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.main_status_bar_blue),56);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.main_status_bar_blue));
     }
 
     @Override
@@ -57,6 +60,34 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void init() {
+        initNavView();
         BottomNavigationViewHelper.disableShiftMode(bottomNavView);
+
+    }
+
+    private void initNavView() {
+        navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.collect).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.about).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
     }
 }

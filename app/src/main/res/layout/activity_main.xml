@@ -50,10 +50,20 @@
             android:background="@color/colorCard"
             app:itemIconTint="@drawable/nav_item_color_state"
             app:itemTextColor="@drawable/nav_item_color_state"
-            app:menu="@menu/menu_nav_main"
+            app:menu="@menu/menu_nav_main_bottom_tab"
             app:elevation="@dimen/size_16dp" />
 
     </android.support.design.widget.CoordinatorLayout>
+
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_gravity="start"
+        android:layout_width="match_parent"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/menu_nav_main"
+        app:itemBackground="@drawable/drawer_item_bg"
+        android:layout_height="match_parent"/>
 
 
 </android.support.v4.widget.DrawerLayout>

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.dream.wanandroid"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -17,17 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     //base
     implementation "com.android.support:appcompat-v7:$rootProject.supportlibraryVersion"
     implementation "com.android.support:support-v4:$rootProject.supportlibraryVersion"
@@ -39,6 +40,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
+
     implementation "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.rxpermissionsVersion"
 
     //net
@@ -69,5 +71,4 @@ dependencies {
 
     //unit test
     testImplementation 'junit:junit:4.12'
-
 }
