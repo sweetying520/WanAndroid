@@ -23,6 +23,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -53,4 +54,5 @@ ext {
     okhttpVersion = '3.9.0'
     retrofitVersion = '2.3.0'
     glideVersion = '4.0.0'
+    ByeBurgerVersion = '1.2.3'
 }

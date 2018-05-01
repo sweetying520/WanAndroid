@@ -4,4 +4,9 @@
 
     <string name="reload">Reload</string>
     <string name="double_click_exit_tint">Press the back button again to exit the GeeksAndroid</string>
+
+    <string name="home">Home pager</string>
+    <string name="knowledge_hierarchy">Knowledge hierarchy</string>
+    <string name="navigation">Navigation</string>
+    <string name="project">Project</string>
 </resources>

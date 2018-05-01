@@ -3,4 +3,9 @@
 
     <string name="reload">重新加载</string>
     <string name="double_click_exit_tint">再按一次后退键退出GeeksAndroid</string>
+
+    <string name="home">首页</string>
+    <string name="knowledge_hierarchy">知识体系</string>
+    <string name="navigation">导航</string>
+    <string name="project">项目</string>
 </resources>

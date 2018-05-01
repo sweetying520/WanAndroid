@@ -26,8 +26,8 @@ public interface ActivityComponent {
     /**
      * 注入MAinActivity所需的依赖
      *
-     * @param mainActivity MainActivity
+     * @param  mActivity
      */
-    void inject(MainActivity mainActivity);
+    void inject(Activity mActivity);
 
 }

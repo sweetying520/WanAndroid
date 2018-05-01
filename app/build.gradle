@@ -58,6 +58,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     implementation "com.orhanobut:logger:$rootProject.loggerVersion"
+    implementation "com.github.githubwing:ByeBurger:$rootProject.ByeBurgerVersion"
 
     //di
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"

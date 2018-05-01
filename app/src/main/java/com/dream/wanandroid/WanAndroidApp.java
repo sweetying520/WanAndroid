@@ -15,6 +15,7 @@ import com.dream.wanandroid.di.module.HttpModule;
 public class WanAndroidApp extends Application{
     private static WanAndroidApp mWanAndroidApp;
     private static volatile AppComponent appComponent;
+    public static boolean isFirstRun;
 
     @Override
     public void onCreate() {
