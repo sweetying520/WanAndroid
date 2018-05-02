@@ -70,4 +70,29 @@ public abstract class BaseActivity <P extends IBasePresenter> extends AbstractSi
     public void showNormalView() {
 
     }
+
+    @Override
+    public void showLoginView() {
+
+    }
+
+    @Override
+    public void showLogoutView() {
+
+    }
+
+    @Override
+    public void showCollectFail() {
+
+    }
+
+    @Override
+    public void showError() {
+
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+
+    }
 }

@@ -25,4 +25,25 @@ public interface IBaseView {
      * reload
      */
     void reload();
+
+    /**
+     * showLoginView
+     */
+    void showLoginView();
+
+    /**
+     * showLogoutView
+     */
+    void showLogoutView();
+
+    /**
+     * Show error message
+     *
+     * @param errorMsg error message
+     */
+    void showErrorMsg(String errorMsg);
+
+    void showError();
+
+    void showCollectFail();
 }

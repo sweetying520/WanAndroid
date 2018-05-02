@@ -5,7 +5,7 @@ import android.app.Activity;
 import com.dream.wanandroid.di.module.ActivityModule;
 import com.dream.wanandroid.di.scope.ActivityScope;
 import com.dream.wanandroid.ui.main.activity.SplashActivity;
-import com.dream.wanandroid.ui.mainpager.activity.MainActivity;
+import com.dream.wanandroid.ui.main.activity.MainActivity;
 
 import dagger.Component;
 

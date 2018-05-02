@@ -14,4 +14,13 @@
     <string name="setting">Setting</string>
     <string name="about">About</string>
     <string name="logout">Log out</string>
+    <string name="search">Top Search</string>
+    <string name="usage">Usage</string>
+    <string name="nav_open">Open DrawerLayout</string>
+    <string name="nav_close">Close DrawerLayout</string>
+
+    //Common
+    <string name="http_error">network anomaly</string>
+    <string name="unKnown_error">unKnown error</string>
+    <string name="about_us">About Us</string>
 </resources>

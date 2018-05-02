@@ -10,7 +10,8 @@
         <item name="android:windowAnimationStyle">@style/windowAnimation</item>
 
         <!--沉浸式-->
-       <!-- <item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="windowAnimation">

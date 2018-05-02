@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true//使用Vector 升级AndroidStudio 3.0 后 报错解决
     }
     buildTypes {
         release {
@@ -61,6 +62,8 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
     implementation "com.orhanobut:logger:$rootProject.loggerVersion"
     implementation "com.github.githubwing:ByeBurger:$rootProject.ByeBurgerVersion"
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
+    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
 
     //di
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"

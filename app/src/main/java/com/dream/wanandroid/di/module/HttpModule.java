@@ -8,7 +8,6 @@ import com.dream.wanandroid.model.http.cookies.CookiesManager;
 import com.dream.wanandroid.utils.CommonUtils;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -43,7 +42,7 @@ public class HttpModule {
     @Singleton
     @Provides
     @WanAndroidUrl
-    Retrofit provideRetrofit(Retrofit.Builder builder,OkHttpClient okHttpClient,String base_url){
+    Retrofit provideRetrofit(Retrofit.Builder builder,OkHttpClient okHttpClient){
         return createRetrofit(builder,okHttpClient,WanAndroidApi.BASE_URL);
     }
 

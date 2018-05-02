@@ -1,0 +1,278 @@
+package com.dream.wanandroid.ui.main.activity;
+
+import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import com.dream.wanandroid.R;
+import com.dream.wanandroid.WanAndroidApp;
+import com.dream.wanandroid.base.activity.BaseActivity;
+import com.dream.wanandroid.base.fragment.BaseFragment;
+import com.dream.wanandroid.common.MyConstant;
+import com.dream.wanandroid.contract.main.MainContract;
+import com.dream.wanandroid.presenter.main.MainPresenter;
+import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
+import com.dream.wanandroid.ui.navigation.fragment.NavigationFragment;
+import com.dream.wanandroid.ui.project.fragment.ProjectFragment;
+import com.dream.wanandroid.utils.BottomNavigationViewHelper;
+import com.dream.wanandroid.utils.StatusBarUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
+
+
+    @BindView(R.id.tv_toolbar_title)
+    TextView tvToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.fragment_group)
+    FrameLayout fragmentGroup;
+    @BindView(R.id.fab_main)
+    FloatingActionButton fabMain;
+    @BindView(R.id.bottom_nav_view)
+    BottomNavigationView bottomNavView;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
+    @BindView(R.id.drawer_main)
+    DrawerLayout drawerMain;
+    private List<BaseFragment> fragmentList;
+    private int lastIndex;//最后一个fragment的位置
+
+    private HomePagerFragment homePagerFragment;
+    private KnowledgeHierarchyFragment knowledgeHierarchyFragment;
+    private NavigationFragment navigationFragment;
+    private ProjectFragment projectFragment;
+
+    @Override
+    protected void initEventAndData() {
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowTitleEnabled(false);
+        tvToolbarTitle.setText(getResources().getString(R.string.home));
+        StatusBarUtils.setStatusColor(getWindow(), ContextCompat.getColor(this, R.color.main_status_bar_blue), 0.5f);
+        toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
+    }
+
+
+
+    //菜单
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    //菜单的事件监听
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                break;
+            case R.id.usage:
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initInject() {
+        getActivityComponent().inject(this);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fragmentList = new ArrayList<>();
+        if(savedInstanceState == null){
+
+        }else {
+
+        }
+        homePagerFragment = HomePagerFragment.getInstance(true,null);
+        fragmentList.add(homePagerFragment);
+        initData();
+        init();
+        swicthFragment(MyConstant.TYPE_MAIN_PAGER);
+
+    }
+
+    private void swicthFragment(int position){
+        if(position >= MyConstant.TYPE_COLLECT){
+            fabMain.setVisibility(View.INVISIBLE);
+        }else {
+            fabMain.setVisibility(View.VISIBLE);
+        }
+
+        if(position >= fragmentList.size()){
+            return;
+        }
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment targetFragment = fragmentList.get(position);
+        Fragment lastFragment = fragmentList.get(lastIndex);
+        lastIndex = position;
+        ft.hide(lastFragment);
+        if(!targetFragment.isAdded()){
+            getSupportFragmentManager().beginTransaction().remove(targetFragment).commit();
+            ft.add(R.id.fragment_group,targetFragment);
+        }
+        ft.show(targetFragment);
+        ft.commitAllowingStateLoss();
+    }
+
+    private void switchKnowledgeHierarchyFragment(){
+        tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.knowledge_hierarchy));
+        swicthFragment(MyConstant.TYPE_KNOWLEDGE);
+
+    }
+
+    private void switchNavigation(){
+        tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.navigation));
+        swicthFragment(MyConstant.TYPE_NAVIGATION);
+
+    }
+
+    private void switchHomePager(){
+        tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.home));
+        swicthFragment(MyConstant.TYPE_MAIN_PAGER);
+
+    }
+
+    private void switchProject(){
+        tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.project));
+        swicthFragment(MyConstant.TYPE_PROJECT);
+
+    }
+
+
+
+
+    private void initData() {
+        knowledgeHierarchyFragment = KnowledgeHierarchyFragment.getInstance(null, null);
+        navigationFragment = NavigationFragment.getInstance(null,null);
+        projectFragment = ProjectFragment.getInstance(null,null);
+        fragmentList.add(knowledgeHierarchyFragment);
+        fragmentList.add(navigationFragment);
+        fragmentList.add(projectFragment);
+    }
+
+    private void init() {
+        initNavView();
+        BottomNavigationViewHelper.disableShiftMode(bottomNavView);
+        bottomNavView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.tab_home:
+                    switchHomePager();
+                    break;
+                case R.id.tab_knowledge_hierarchy:
+                    switchKnowledgeHierarchyFragment();
+                    break;
+                case R.id.tab_navigation:
+                    switchNavigation();
+                    break;
+                case R.id.tab_project:
+                    switchProject();
+                    break;
+            }
+            return true;
+        });
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,
+                drawerMain,
+                toolbar,
+                R.string.nav_open,
+                R.string.nav_close){
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                //获取mDrawerLayout中的第一个子布局，也就是布局中的RelativeLayout
+                //获取抽屉的view
+                View mContent = drawerMain.getChildAt(0);
+                float scale = 1 - slideOffset;
+                float endScale = 0.8f + scale * 0.2f;
+                float startScale = 1 - 0.3f * scale;
+
+                //设置左边菜单滑动后的占据屏幕大小
+                drawerView.setScaleX(startScale);
+                drawerView.setScaleY(startScale);
+                //设置菜单透明度
+                drawerView.setAlpha(0.6f + 0.4f * (1 - scale));
+
+                //设置内容界面水平和垂直方向偏转量
+                //在滑动时内容界面的宽度为 屏幕宽度减去菜单界面所占宽度
+                mContent.setTranslationX(drawerView.getMeasuredWidth() * (1 - scale));
+                //设置内容界面操作无效（比如有button就会点击无效）
+                mContent.invalidate();
+                //设置右边菜单滑动后的占据屏幕大小
+                mContent.setScaleX(endScale);
+                mContent.setScaleY(endScale);
+            }
+        };
+        toggle.syncState();
+        drawerMain.addDrawerListener(toggle);
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        if(getSupportFragmentManager().getBackStackEntryCount() > 1){
+            pop();
+        }else {
+            ActivityCompat.finishAfterTransition(this);
+        }
+
+    }
+
+    private void initNavView() {
+        navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.collect).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.about).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(item -> {
+
+            return true;
+        });
+    }
+}

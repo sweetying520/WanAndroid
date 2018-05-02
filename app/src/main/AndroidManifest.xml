@@ -31,7 +31,7 @@
 
         <!--主界面-->
         <activity
-            android:name=".ui.mainpager.activity.MainActivity"
+            android:name=".ui.main.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 

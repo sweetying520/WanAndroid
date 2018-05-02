@@ -24,5 +24,5 @@ public interface AppComponent {
     /**
      * 数据中心
      */
-    //DataManager getDataManager();
+    DataManager getDataManager();
 }

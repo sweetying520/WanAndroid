@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/tab_home"
         android:enabled="true"
         android:icon="@drawable/icon_home_pager_not_selected"
         android:title="@string/home"

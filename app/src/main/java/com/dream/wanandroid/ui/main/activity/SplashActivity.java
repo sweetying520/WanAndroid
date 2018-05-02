@@ -8,8 +8,7 @@ import com.dream.wanandroid.WanAndroidApp;
 import com.dream.wanandroid.base.activity.BaseActivity;
 import com.dream.wanandroid.contract.main.SplashContract;
 import com.dream.wanandroid.presenter.main.SplashPresenter;
-import com.dream.wanandroid.ui.mainpager.activity.MainActivity;
-import com.dream.wanandroid.utils.StatusBarUtil;
+import com.dream.wanandroid.utils.StatusBarUtils;
 
 import butterknife.BindView;
 
@@ -53,7 +52,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             return;
         }
 
-        StatusBarUtil.setTranslucentForImageView(this,0,null);
+       // StatusBarUtil.setTranslucentForImageView(this,0,null);
+        StatusBarUtils.immersive(this);
         WanAndroidApp.isFirstRun = true;
         mOneAnimation.setAnimation("W.json");
         mOneAnimation.playAnimation();

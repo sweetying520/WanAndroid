@@ -12,13 +12,21 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter{
 
+    private DataManager mdaDataManager;
+
     @Inject
     public MainPresenter(DataManager dataManager) {
         super(dataManager);
+        mdaDataManager = dataManager;
     }
 
     @Override
     public void attachView(MainContract.View mView) {
         super.attachView(mView);
+        registerEvent();
+    }
+
+    private void registerEvent() {
+
     }
 }
