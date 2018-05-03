@@ -43,10 +43,16 @@ public class CommonUtils {
      * @param activity Activity
      * @param msg message
      */
+    private static Toast mToast;
     public static void showMessage(Activity activity, String msg) {
         LoggerUtils.e(TAG,"showMessage ：" + msg);
-
-        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+        if(mToast == null){
+            mToast = Toast.makeText(activity,msg,Toast.LENGTH_SHORT);
+        }else {
+            mToast.setText(msg);
+        }
+        mToast.show();
+        //Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -55,9 +61,14 @@ public class CommonUtils {
      * @param activity Activity
      * @param msg message
      */
+    private static Snackbar snackbar;
     public static void showSnackMessage(Activity activity, String msg) {
         LoggerUtils.e(TAG,"showSnackMessage ：" + msg);
-        Snackbar snackbar = Snackbar.make(activity.getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT);
+        if(snackbar == null){
+            snackbar = Snackbar.make(activity.getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT);
+        }else {
+            snackbar.setText(msg);
+        }
         View view = snackbar.getView();
         ((TextView) view.findViewById(R.id.snackbar_text)).setTextColor(ContextCompat.getColor(activity, R.color.white));
         snackbar.show();

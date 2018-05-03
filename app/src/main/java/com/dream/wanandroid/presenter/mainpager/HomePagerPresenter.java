@@ -18,6 +18,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
+ * HomePagerPresenter
  * Created by Administrator on 2018/5/2.
  */
 
@@ -107,12 +108,17 @@ public class HomePagerPresenter extends BasePresenter<HomePagerContract.View> im
 
     @Override
     public void autoRefresh() {
-
+        isRefresh = true;
+        mCurrentPage = 0;
+        getBannerData();
+        getFeedArticleList();
     }
 
     @Override
     public void loadMore() {
-
+        isRefresh = false;
+        mCurrentPage++;
+        getFeedArticleList();
     }
 
     @Override

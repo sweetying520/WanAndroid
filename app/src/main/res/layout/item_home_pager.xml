@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_08dp"
+    android:layout_marginEnd="@dimen/size_12dp"
+    android:layout_marginStart="@dimen/size_12dp"
+    android:layout_marginTop="@dimen/size_08dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/colorCard"
+    app:cardCornerRadius="@dimen/size_03dp"
+    app:cardElevation="@dimen/size_02dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/size_12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawablePadding="@dimen/size_05dp"
+                android:drawableStart="@mipmap/icon_author"
+                android:gravity="center_vertical"
+                android:textColor="@color/comment_text"
+                tools:text="Keeply袁庆玲" />
+
+            <TextView
+                android:id="@+id/tv_subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/tv_title"
+                android:gravity="end"
+                android:textColor="@color/colorPrimary"
+                tools:text="Java深入 / 内存管理" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:gravity="center"
+            android:textColor="@color/comment_text"
+            android:textSize="@dimen/text_size_16"
+            tools:text="5分钟让你明白HTTP协议" />
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/size_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:id="@+id/ll_article_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_is_project"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rectangle_stroke_light_deep_red"
+                    android:paddingEnd="@dimen/size_05dp"
+                    android:paddingStart="@dimen/size_05dp"
+                    android:textColor="@color/light_deep_red"
+                    tools:text="项目" />
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_is_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_12dp"
+                    android:background="@drawable/shape_rectangle_stroke_light_green"
+                    android:paddingEnd="@dimen/size_05dp"
+                    android:paddingStart="@dimen/size_05dp"
+                    android:textColor="@color/light_green"
+                    tools:text="新" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:src="@drawable/icon_like_article_not_selected" />
+
+            <TextView
+                android:layout_toStartOf="@+id/ll_article_name"
+                android:layout_marginStart="@dimen/size_12dp"
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/iv_like"
+                android:drawablePadding="@dimen/size_05dp"
+                android:drawableStart="@drawable/ic_time"
+                android:gravity="center_vertical"
+                tools:text="14小时前" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

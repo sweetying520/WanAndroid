@@ -1,6 +1,7 @@
 package com.dream.wanandroid.model.http;
 
 import com.dream.wanandroid.model.bean.BaseResponse;
+import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
 
@@ -29,5 +30,10 @@ public interface HttpHelper {
      * @return
      */
     Observable<BaseResponse<List<BannerData>>> getBannerData();
+
+    /**
+     * 获取知识体系
+     */
+    Observable<BaseResponse<List<HierarchyData>>> getHierarchyData();
 
 }

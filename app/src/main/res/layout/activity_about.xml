@@ -28,6 +28,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 app:title="@string/about_us"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -66,6 +67,27 @@
             android:id="@+id/about_us_content"
             layout="@layout/content_about" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_about"
+        android:layout_width="wrap_content"
+        app:fabSize="normal"
+        android:elevation="0dp"
+        android:layout_margin="@dimen/size_16dp"
+        app:layout_anchor="@+id/about_us_content"
+        app:layout_anchorGravity="top"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_height="wrap_content" />
+
+    <com.scwang.smartrefresh.header.flyrefresh.FlyView
+        android:id="@+id/fly_view"
+        android:layout_margin="@dimen/size_16dp"
+        app:layout_anchor="@+id/fab_about"
+        app:layout_anchorGravity="center"
+        android:elevation="@dimen/size_06dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="reload">重新加载</string>
-    <string name="double_click_exit_tint">再按一次后退键退出GeeksAndroid</string>
+    <string name="double_click_exit_tint">再按一次后退键退出WanAndroid</string>
 
     <string name="home">首页</string>
     <string name="knowledge_hierarchy">知识体系</string>
@@ -23,4 +23,11 @@
     <string name="http_error">网络异常</string>
     <string name="unKnown_error">未知错误</string>
     <string name="about_us">关于我们</string>
+
+    <string name="failed_to_obtain_banner_data">获取广告数据失败</string>
+    <string name="failed_to_obtain_article_list">获取文章列表数据</string>
+
+    //知识体系
+    <string name="failed_to_obtain_knowledge_data">获取知识体系数据列表失败</string>
+    <string name="load_more_no_data">没有多余的干货了(*≧Д≦*)</string>
 </resources>

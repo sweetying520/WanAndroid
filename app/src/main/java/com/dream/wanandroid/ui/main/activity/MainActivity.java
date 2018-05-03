@@ -1,5 +1,6 @@
 package com.dream.wanandroid.ui.main.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -266,7 +267,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         });
 
         navView.getMenu().findItem(R.id.about).setOnMenuItemClickListener(item -> {
-
+            startActivity(new Intent(this,AboutActivity.class));
             return true;
         });
 

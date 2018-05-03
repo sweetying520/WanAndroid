@@ -10,12 +10,17 @@ import com.dream.wanandroid.base.view.IBaseView;
 import com.dream.wanandroid.di.component.DaggerFragmentComponent;
 import com.dream.wanandroid.di.component.FragmentComponent;
 import com.dream.wanandroid.di.module.FragmentModule;
+import com.dream.wanandroid.utils.CommonUtils;
+
+import javax.inject.Inject;
 
 /**
  * Created by Administrator on 2018/4/27.
  */
 
 public abstract class BaseFragment<P extends IBasePresenter> extends AbstractSimpleFragment implements IBaseView{
+
+    @Inject
     protected P mPresenter;
 
 
@@ -86,6 +91,8 @@ public abstract class BaseFragment<P extends IBasePresenter> extends AbstractSim
 
     @Override
     public void showErrorMsg(String errorMsg) {
-
+        if(isAdded()){
+            CommonUtils.showSnackMessage(_mActivity,errorMsg);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.dream.wanandroid.model.http.api;
 
 import com.dream.wanandroid.model.bean.BaseResponse;
+import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
 
@@ -43,6 +44,9 @@ public interface WanAndroidApi {
      */
     @POST("lg/collect/{id}/json")
     Observable<BaseResponse<FeedArticleListData>> addCollectArticle(@Path("id") int id);
+
+    @GET("tree/json")
+    Observable<BaseResponse<List<HierarchyData>>> getHierarchyData();
 
 
 

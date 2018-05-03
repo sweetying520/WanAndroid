@@ -64,6 +64,7 @@ dependencies {
     implementation "com.github.githubwing:ByeBurger:$rootProject.ByeBurgerVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
+    implementation "com.youth.banner:banner:$rootProject.bannerVersion"
 
     //di
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"

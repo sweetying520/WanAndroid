@@ -3,7 +3,7 @@
 
 
     <string name="reload">Reload</string>
-    <string name="double_click_exit_tint">Press the back button again to exit the GeeksAndroid</string>
+    <string name="double_click_exit_tint">Press the back button again to exit the WanAndroid</string>
 
     <string name="home">Home pager</string>
     <string name="knowledge_hierarchy">Knowledge hierarchy</string>
@@ -23,4 +23,12 @@
     <string name="http_error">network anomaly</string>
     <string name="unKnown_error">unKnown error</string>
     <string name="about_us">About Us</string>
+
+    <string name="failed_to_obtain_banner_data">Failed to obtain advertising data</string>
+    <string name="failed_to_obtain_article_list">Gets the article list data</string>
+
+    //Knowledge hierarchy
+    <string name="failed_to_obtain_knowledge_data">Failure to obtain knowledge system data</string>
+
+    <string name="load_more_no_data">There\'s no extra data</string>
 </resources>

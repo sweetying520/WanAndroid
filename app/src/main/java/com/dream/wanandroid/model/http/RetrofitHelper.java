@@ -1,6 +1,7 @@
 package com.dream.wanandroid.model.http;
 
 import com.dream.wanandroid.model.bean.BaseResponse;
+import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
 import com.dream.wanandroid.model.http.api.WanAndroidApi;
@@ -37,5 +38,10 @@ public class RetrofitHelper implements HttpHelper{
     @Override
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mWanAndroidApi.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HierarchyData>>> getHierarchyData() {
+        return mWanAndroidApi.getHierarchyData();
     }
 }

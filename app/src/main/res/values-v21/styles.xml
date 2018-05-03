@@ -17,7 +17,7 @@
     <style name="windowAnimation">
         <item name="android:activityOpenEnterAnimation">@anim/push_right_in</item>
         <item name="android:activityOpenExitAnimation">@anim/push_right_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/push_let_in</item>
+        <item name="android:activityCloseEnterAnimation">@anim/push_left_in</item>
         <item name="android:activityCloseExitAnimation">@anim/push_left_out</item>
     </style>
 

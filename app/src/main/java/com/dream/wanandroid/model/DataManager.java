@@ -1,6 +1,7 @@
 package com.dream.wanandroid.model;
 
 import com.dream.wanandroid.model.bean.BaseResponse;
+import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
 import com.dream.wanandroid.model.http.HttpHelper;
@@ -129,5 +130,10 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     @Override
     public Observable<BaseResponse<List<BannerData>>> getBannerData() {
         return mHttpHelper.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HierarchyData>>> getHierarchyData() {
+        return mHttpHelper.getHierarchyData();
     }
 }

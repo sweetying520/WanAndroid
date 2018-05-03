@@ -71,7 +71,7 @@ public abstract class AbstractRootFragment<P extends BasePresenter> extends Base
         switch (currentState){
             case LOADING_STATE:
                 mLottieAnimationView.cancelAnimation();
-                mNormalView.setVisibility(View.GONE);
+                mLoadingView.setVisibility(View.GONE);
                 break;
             case ERROR_STATE:
                 mErrorView.setVisibility(View.GONE);

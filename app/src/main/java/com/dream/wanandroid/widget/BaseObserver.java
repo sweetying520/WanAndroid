@@ -12,10 +12,9 @@ import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
 
 /**
+ * @param <T>
  * @author quchao
  * @date 2017/11/27
- *
- * @param <T>
  */
 
 public abstract class BaseObserver<T> extends ResourceObserver<T> {
@@ -25,21 +24,21 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
     private String mErrorMsg;
     private boolean isShowError = true;
 
-    protected BaseObserver(IBaseView view){
+    protected BaseObserver(IBaseView view) {
         this.mView = view;
     }
 
-    protected BaseObserver(IBaseView view, String errorMsg){
+    protected BaseObserver(IBaseView view, String errorMsg) {
         this.mView = view;
         this.mErrorMsg = errorMsg;
     }
 
-    protected BaseObserver(IBaseView view, boolean isShowError){
+    protected BaseObserver(IBaseView view, boolean isShowError) {
         this.mView = view;
         this.isShowError = isShowError;
     }
 
-    protected BaseObserver(IBaseView view, String errorMsg, boolean isShowError){
+    protected BaseObserver(IBaseView view, String errorMsg, boolean isShowError) {
         this.mView = view;
         this.mErrorMsg = errorMsg;
         this.isShowError = isShowError;
@@ -60,13 +59,13 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
         } else if (e instanceof ServerException) {
             mView.showErrorMsg(e.toString());
         } else if (e instanceof HttpException) {
-                mView.showErrorMsg(WanAndroidApp.getInstance().getString(R.string.http_error));
+            mView.showErrorMsg(WanAndroidApp.getInstance().getString(R.string.http_error));
         } else {
             mView.showErrorMsg(WanAndroidApp.getInstance().getString(R.string.unKnown_error));
-            LoggerUtils.d(TAG,e.toString());
+            LoggerUtils.d(TAG, e.toString());
         }
         if (isShowError) {
-            mView.showError();
+            mView.showErrorView();
         }
     }
 }
