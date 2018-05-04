@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_12dp"
+    android:layout_marginEnd="@dimen/size_08dp"
+    android:layout_marginStart="@dimen/size_08dp"
+    android:layout_marginTop="@dimen/size_12dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/colorCard"
+    app:cardCornerRadius="@dimen/size_03dp"
+    app:cardElevation="@dimen/size_02dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_s_180dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/size_12dp">
+
+
+        <ImageView
+            android:id="@+id/iv_display"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <RelativeLayout
+            android:layout_marginStart="@dimen/size_12dp"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="5">
+
+            <TextView
+                android:id="@+id/tv_project_name"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/comment_text"
+                android:drawablePadding="@dimen/size_05dp"
+                android:drawableStart="@mipmap/icon_author"
+                tools:text="微Yue电子书阅读weyuewrwefweafsdfdsaf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_project_des"
+                android:layout_below="@+id/tv_project_name"
+                android:textColor="@color/comment_text"
+                android:layout_marginTop="@dimen/size_16dp"
+                android:ellipsize="end"
+                android:maxLines="4"
+                tools:text="Diycode 社区客户端，可以更方便的在手机上查看社区信息。应用采用了数据多级缓存，并且实现了离线浏览(访问过一次的页面会被缓存下来，没有网络也可查看)，相比于网页版，在一定程度上可以"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_below="@+id/tv_project_des"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:textColor="@color/comment_text"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_time"
+                    tools:text="2018-04-22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="@color/comment_text"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/size_10dp"
+                    android:id="@+id/tv_author"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_toEndOf="@+id/tv_time"
+                    android:layout_toStartOf="@+id/item_project_list_install_tv"
+                    tools:text="kanddongqu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/item_project_list_install_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/size_05dp"
+                    android:text="@string/install"
+                    android:textColor="@color/colorAccent"
+                />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

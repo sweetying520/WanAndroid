@@ -208,6 +208,12 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
 
     }
 
+    public void jumpToTop(){
+        if(homePagerRv != null){
+            homePagerRv.smoothScrollToPosition(0);
+        }
+    }
+
     @Override
     public void showBannerDataFail() {
         CommonUtils.showSnackMessage(_mActivity,getString(R.string.failed_to_obtain_banner_data));

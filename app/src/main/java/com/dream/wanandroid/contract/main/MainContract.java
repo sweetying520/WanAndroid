@@ -14,6 +14,6 @@ public interface MainContract {
     }
 
     interface Presenter extends IBasePresenter<View>{
-
+        void setCurrentPage(int position);
     }
 }

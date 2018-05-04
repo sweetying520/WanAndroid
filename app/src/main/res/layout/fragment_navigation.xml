@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/normal_view"
-        app:srlPrimaryColor="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <com.scwang.smartrefresh.header.DeliveryHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/normal_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+
+        <q.rorbin.verticaltablayout.VerticalTabLayout
+            android:id="@+id/vertical_tab"
+            app:tab_mode="scrollable"
+            android:background="@color/deep_grey"
+            app:tab_height="@dimen/size_50dp"
+            app:indicator_color="@color/white"
+            app:indicator_gravity="fill"
+            app:tab_margin="@dimen/size_15dp"
+            android:layout_width="@dimen/size_s_100dp"
+            android:layout_height="match_parent"/>
+
+        <View
+            android:background="@color/comment_line"
+            android:layout_width="@dimen/size_0.5dp"
+            android:layout_height="match_parent"/>
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/navigation_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-
-
-
-        <com.scwang.smartrefresh.header.TaurusHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
 
 </FrameLayout>

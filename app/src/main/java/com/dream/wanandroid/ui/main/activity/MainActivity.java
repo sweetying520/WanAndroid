@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
@@ -79,7 +80,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
 
-
     //菜单
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,8 +92,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search:
+
                 break;
             case R.id.usage:
+
                 break;
         }
         return true;
@@ -113,12 +115,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentList = new ArrayList<>();
-        if(savedInstanceState == null){
-
-        }else {
-
-        }
-        homePagerFragment = HomePagerFragment.getInstance(true,null);
+//        if (savedInstanceState == null) {
+//
+//        } else {
+//
+//        }
+        homePagerFragment = HomePagerFragment.getInstance(true, null);
         fragmentList.add(homePagerFragment);
         initData();
         init();
@@ -126,14 +128,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
-    private void swicthFragment(int position){
-        if(position >= MyConstant.TYPE_COLLECT){
+    private void swicthFragment(int position) {
+        if (position >= MyConstant.TYPE_COLLECT) {
             fabMain.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             fabMain.setVisibility(View.VISIBLE);
         }
 
-        if(position >= fragmentList.size()){
+        if (position >= fragmentList.size()) {
             return;
         }
 
@@ -142,45 +144,47 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         Fragment lastFragment = fragmentList.get(lastIndex);
         lastIndex = position;
         ft.hide(lastFragment);
-        if(!targetFragment.isAdded()){
+        if (!targetFragment.isAdded()) {
             getSupportFragmentManager().beginTransaction().remove(targetFragment).commit();
-            ft.add(R.id.fragment_group,targetFragment);
+            ft.add(R.id.fragment_group, targetFragment);
         }
         ft.show(targetFragment);
         ft.commitAllowingStateLoss();
     }
 
-    private void switchKnowledgeHierarchyFragment(){
+    private void switchKnowledgeHierarchyFragment() {
+        mPresenter.setCurrentPage(MyConstant.TYPE_KNOWLEDGE);
         tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.knowledge_hierarchy));
         swicthFragment(MyConstant.TYPE_KNOWLEDGE);
 
     }
 
-    private void switchNavigation(){
+    private void switchNavigation() {
+        mPresenter.setCurrentPage(MyConstant.TYPE_NAVIGATION);
         tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.navigation));
         swicthFragment(MyConstant.TYPE_NAVIGATION);
 
     }
 
-    private void switchHomePager(){
+    private void switchHomePager() {
+        mPresenter.setCurrentPage(MyConstant.TYPE_MAIN_PAGER);
         tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.home));
         swicthFragment(MyConstant.TYPE_MAIN_PAGER);
 
     }
 
-    private void switchProject(){
+    private void switchProject() {
+        mPresenter.setCurrentPage(MyConstant.TYPE_PROJECT);
         tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.project));
         swicthFragment(MyConstant.TYPE_PROJECT);
 
     }
 
 
-
-
     private void initData() {
         knowledgeHierarchyFragment = KnowledgeHierarchyFragment.getInstance(null, null);
-        navigationFragment = NavigationFragment.getInstance(null,null);
-        projectFragment = ProjectFragment.getInstance(null,null);
+        navigationFragment = NavigationFragment.getInstance(null, null);
+        projectFragment = ProjectFragment.getInstance(null, null);
         fragmentList.add(knowledgeHierarchyFragment);
         fragmentList.add(navigationFragment);
         fragmentList.add(projectFragment);
@@ -188,9 +192,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     private void init() {
         initNavView();
+        mPresenter.setCurrentPage(MyConstant.TYPE_MAIN_PAGER);
         BottomNavigationViewHelper.disableShiftMode(bottomNavView);
         bottomNavView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.tab_home:
                     switchHomePager();
                     break;
@@ -211,7 +216,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 drawerMain,
                 toolbar,
                 R.string.nav_open,
-                R.string.nav_close){
+                R.string.nav_close) {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 //获取mDrawerLayout中的第一个子布局，也就是布局中的RelativeLayout
@@ -243,37 +248,67 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void onBackPressedSupport() {
-        if(getSupportFragmentManager().getBackStackEntryCount() > 1){
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             pop();
-        }else {
+        } else {
             ActivityCompat.finishAfterTransition(this);
         }
 
     }
 
+    public void jumpToTop() {
+        switch (mPresenter.getCurrentPage()) {
+            case MyConstant.TYPE_MAIN_PAGER:
+                if(homePagerFragment != null){
+                    homePagerFragment.jumpToTop();
+                }
+                break;
+            case MyConstant.TYPE_KNOWLEDGE:
+                if(knowledgeHierarchyFragment != null){
+                    knowledgeHierarchyFragment.jumpToTop();
+                }
+                break;
+            case MyConstant.TYPE_NAVIGATION:
+                if(navigationFragment != null){
+                    navigationFragment.jumpToTop();
+                }
+                break;
+            case MyConstant.TYPE_PROJECT:
+                if(projectFragment != null){
+                    projectFragment.jumpToTop();
+                }
+                break;
+        }
+    }
+
     private void initNavView() {
-        navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
-            return true;
-        });
-
-        navView.getMenu().findItem(R.id.collect).setOnMenuItemClickListener(item -> {
-
-            return true;
-        });
-
-        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
-
-            return true;
-        });
+//        navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
+//            return true;
+//        });
+//
+//        navView.getMenu().findItem(R.id.collect).setOnMenuItemClickListener(item -> {
+//
+//            return true;
+//        });
+//
+//        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
+//
+//            return true;
+//        });
 
         navView.getMenu().findItem(R.id.about).setOnMenuItemClickListener(item -> {
-            startActivity(new Intent(this,AboutActivity.class));
+            startActivity(new Intent(this, AboutActivity.class));
             return true;
         });
 
-        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(item -> {
+//        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(item -> {
+//
+//            return true;
+//        });
+    }
 
-            return true;
-        });
+    @OnClick(R.id.fab_main)
+    public void onClick() {
+        jumpToTop();
     }
 }

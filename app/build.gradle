@@ -65,6 +65,9 @@ dependencies {
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
     implementation "com.youth.banner:banner:$rootProject.bannerVersion"
+    implementation "com.flyco.tablayout:FlycoTabLayout_Lib:$rootProject.tablayoutVersion"
+    implementation "q.rorbin:VerticalTabLayout:$rootProject.verticalTabLayoutVersion"
+    implementation "com.hyman:flowlayout-lib:$rootProject.flowlayoutVersion"
 
     //di
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"

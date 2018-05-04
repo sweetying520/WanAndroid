@@ -57,4 +57,7 @@ ext {
     ByeBurgerVersion = '1.2.3'
     smartrefreshVersion = '1.0.5.1'
     bannerVersion = '1.4.10'
+    tablayoutVersion = '2.1.2@aar'
+    verticalTabLayoutVersion = '1.2.5'
+    flowlayoutVersion = '1.1.2'
 }

@@ -64,11 +64,11 @@ public class CommonUtils {
     private static Snackbar snackbar;
     public static void showSnackMessage(Activity activity, String msg) {
         LoggerUtils.e(TAG,"showSnackMessage ：" + msg);
-        if(snackbar == null){
+       // if(snackbar == null){
             snackbar = Snackbar.make(activity.getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT);
-        }else {
+       // }else {
             snackbar.setText(msg);
-        }
+       // }
         View view = snackbar.getView();
         ((TextView) view.findViewById(R.id.snackbar_text)).setTextColor(ContextCompat.getColor(activity, R.color.white));
         snackbar.show();

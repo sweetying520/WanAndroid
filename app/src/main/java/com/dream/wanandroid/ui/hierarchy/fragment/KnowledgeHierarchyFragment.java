@@ -122,4 +122,10 @@ public class KnowledgeHierarchyFragment extends AbstractRootFragment<KnowledgeHi
             refreshLayout.finishLoadMore(1000);
         });
     }
+
+    public void jumpToTop(){
+        if(knowledgeHierarchyRv != null){
+            knowledgeHierarchyRv.smoothScrollToPosition(0);
+        }
+    }
 }

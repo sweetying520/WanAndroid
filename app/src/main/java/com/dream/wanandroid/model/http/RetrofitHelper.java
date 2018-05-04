@@ -4,6 +4,11 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.search.HotSearchData;
+import com.dream.wanandroid.model.bean.main.search.SearchData;
+import com.dream.wanandroid.model.bean.navigation.NavigationData;
+import com.dream.wanandroid.model.bean.project.ProjectListData;
+import com.dream.wanandroid.model.bean.project.ProjectTabData;
 import com.dream.wanandroid.model.http.api.WanAndroidApi;
 
 import java.util.List;
@@ -43,5 +48,30 @@ public class RetrofitHelper implements HttpHelper{
     @Override
     public Observable<BaseResponse<List<HierarchyData>>> getHierarchyData() {
         return mWanAndroidApi.getHierarchyData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<NavigationData>>> getNavigationData() {
+        return mWanAndroidApi.getNavigationData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ProjectTabData>>> getProjectTabData() {
+        return mWanAndroidApi.getProjectTabData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ProjectListData>> getProjecListData(int page, int cid) {
+        return mWanAndroidApi.getProjecListData(page,cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HotSearchData>>> getHotSearchData() {
+        return mWanAndroidApi.getHotSearchData();
+    }
+
+    @Override
+    public Observable<BaseResponse<SearchData>> getSearchData(int page, String key) {
+        return mWanAndroidApi.getSearchData(page,key);
     }
 }

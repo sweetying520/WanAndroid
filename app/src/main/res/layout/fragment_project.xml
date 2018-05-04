@@ -2,31 +2,48 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+    <LinearLayout
         android:id="@+id/normal_view"
-        app:srlPrimaryColor="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
-        <com.scwang.smartrefresh.header.DeliveryHeader
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/slide_tab"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:background="@color/colorCard"
+            android:paddingLeft="@dimen/size_05dp"
+            android:paddingRight="@dimen/size_05dp"
+            android:layout_height="@dimen/size_48dp"
+            app:tl_indicator_color="@color/light_red"
+            app:tl_textSelectColor="@color/white"
+            app:tl_textUnselectColor="@color/grey"
+            app:tl_divider_width="@dimen/size_01dp"
+            app:tl_divider_color="@color/light_red"
+            app:tl_divider_padding="@dimen/size_10dp"
+            app:tl_indicator_corner_radius="@dimen/size_05dp"
+            app:tl_indicator_margin_left="@dimen/size_05dp"
+            app:tl_indicator_margin_right="@dimen/size_05dp"
+            app:tl_indicator_style="BLOCK"/>
 
-        <android.support.v7.widget.RecyclerView
+
+        <View
+            android:background="@color/comment_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_01dp"/>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/project_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+    </LinearLayout>
 
-
-
-
-        <com.scwang.smartrefresh.header.TaurusHeader
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </FrameLayout>

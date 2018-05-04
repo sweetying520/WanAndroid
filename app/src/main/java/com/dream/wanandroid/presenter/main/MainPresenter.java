@@ -12,12 +12,10 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter{
 
-    private DataManager mdaDataManager;
 
     @Inject
     public MainPresenter(DataManager dataManager) {
         super(dataManager);
-        mdaDataManager = dataManager;
     }
 
     @Override
@@ -28,5 +26,10 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     private void registerEvent() {
 
+    }
+
+    @Override
+    public void setCurrentPage(int position) {
+        mDataManager.setCurrentPage(position);
     }
 }

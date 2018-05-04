@@ -14,7 +14,7 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
 
     protected V mView;
     private CompositeDisposable mCompositeDisposable;
-    private DataManager mDataManager;
+    protected DataManager mDataManager;
 
 
     public BasePresenter(DataManager dataManager){
@@ -55,5 +55,10 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
     @Override
     public void addRxBindingSubscribe(Disposable disposable) {
         addSubscribe(disposable);
+    }
+
+    @Override
+    public int getCurrentPage() {
+        return mDataManager.getCurrentPage();
     }
 }

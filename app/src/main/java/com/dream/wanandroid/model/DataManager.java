@@ -4,6 +4,11 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.search.HotSearchData;
+import com.dream.wanandroid.model.bean.main.search.SearchData;
+import com.dream.wanandroid.model.bean.navigation.NavigationData;
+import com.dream.wanandroid.model.bean.project.ProjectListData;
+import com.dream.wanandroid.model.bean.project.ProjectTabData;
 import com.dream.wanandroid.model.http.HttpHelper;
 import com.dream.wanandroid.model.prefs.PreferenceHelper;
 
@@ -11,7 +16,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-/**
+/**DataManager
  * Created by Administrator on 2018/4/27.
  */
 
@@ -27,95 +32,18 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     }
 
 
-    @Override
-    public void setLoginAccount(String account) {
 
-    }
-
-    @Override
-    public void setLoginPassword(String password) {
-
-    }
-
-    @Override
-    public String getLoginAccount() {
-        return null;
-    }
-
-    @Override
-    public String getLoginPassword() {
-        return null;
-    }
-
-    @Override
-    public void setLoginStatus(boolean isLogin) {
-
-    }
-
-    @Override
-    public boolean getLoginStatus() {
-        return false;
-    }
-
-    @Override
-    public void setCookie(String domain, String cookie) {
-
-    }
-
-    @Override
-    public String getCookie(String domain) {
-        return null;
-    }
 
     @Override
     public void setCurrentPage(int position) {
-
+        mPreferenceHelper.setCurrentPage(position);
     }
 
     @Override
     public int getCurrentPage() {
-        return 0;
+        return mPreferenceHelper.getCurrentPage();
     }
 
-    @Override
-    public void setProjectCurrentPage(int position) {
-
-    }
-
-    @Override
-    public int getProjectCurrentPage() {
-        return 0;
-    }
-
-    @Override
-    public boolean getAutoCacheState() {
-        return false;
-    }
-
-    @Override
-    public boolean getNoImageState() {
-        return false;
-    }
-
-    @Override
-    public boolean getNightModeState() {
-        return false;
-    }
-
-    @Override
-    public void setNightModeState(boolean b) {
-
-    }
-
-    @Override
-    public void setNoImageState(boolean b) {
-
-    }
-
-    @Override
-    public void setAutoCacheState(boolean b) {
-
-    }
 
     @Override
     public Observable<BaseResponse<FeedArticleListData>> getFeedArticleList(int page) {
@@ -135,5 +63,30 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     @Override
     public Observable<BaseResponse<List<HierarchyData>>> getHierarchyData() {
         return mHttpHelper.getHierarchyData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<NavigationData>>> getNavigationData() {
+        return mHttpHelper.getNavigationData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ProjectTabData>>> getProjectTabData() {
+        return mHttpHelper.getProjectTabData();
+    }
+
+    @Override
+    public Observable<BaseResponse<ProjectListData>> getProjecListData(int page, int cid) {
+        return mHttpHelper.getProjecListData(page,cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<HotSearchData>>> getHotSearchData() {
+        return mHttpHelper.getHotSearchData();
+    }
+
+    @Override
+    public Observable<BaseResponse<SearchData>> getSearchData(int page, String key) {
+        return mHttpHelper.getSearchData(page,key);
     }
 }
