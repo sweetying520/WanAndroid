@@ -8,7 +8,7 @@
     <string name="knowledge_hierarchy">知识体系</string>
     <string name="navigation">导航</string>
     <string name="project">项目</string>
-
+    <string name="useful_sites">常用网站</string>
     <string name="collect">收藏</string>
     <string name="setting">设置</string>
     <string name="about">关于我们</string>
@@ -48,4 +48,7 @@
     <string name="or">或</string>
     <string name="clear_all">清空</string>
     <string name="search_null_tint">快来搜点干货吧*≧▽≦*</string>
+    <string name="history_search">搜索历史</string>
+    <string name="search_tint">发现更多干货</string>
+    <string name="search_event">搜索</string>
 </resources>

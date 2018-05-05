@@ -4,6 +4,7 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
 import com.dream.wanandroid.model.bean.main.search.SearchData;
 import com.dream.wanandroid.model.bean.navigation.NavigationData;
@@ -101,4 +102,10 @@ public interface WanAndroidApi {
     Observable<BaseResponse<SearchData>> getSearchData(@Path("page") int page, @Field("k") String key);
 
 
+    /**
+     * 常用网站数据
+     * @return 常用网站
+     */
+    @GET("friend/json")
+    Observable<BaseResponse<List<OftenUseData>>> getOftenUseData();
 }

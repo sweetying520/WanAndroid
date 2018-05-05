@@ -9,12 +9,13 @@
     <string name="knowledge_hierarchy">Knowledge hierarchy</string>
     <string name="navigation">Navigation</string>
     <string name="project">Project</string>
-
+    <string name="useful_sites">Useful Sites</string>
     <string name="collect">Collection</string>
     <string name="setting">Setting</string>
     <string name="about">About</string>
     <string name="logout">Log out</string>
     <string name="search">Top Search</string>
+    <string name="search_event">Search</string>
     <string name="usage">Usage</string>
     <string name="nav_open">Open DrawerLayout</string>
     <string name="nav_close">Close DrawerLayout</string>
@@ -49,4 +50,7 @@
     <string name="or">Or</string>
     <string name="clear_all">Clear all</string>
     <string name="search_null_tint">find some dry goods *≧▽≦*</string>
+
+    <string name="search_tint">Find more dry goods</string>
+    <string name="history_search">Search History</string>
 </resources>

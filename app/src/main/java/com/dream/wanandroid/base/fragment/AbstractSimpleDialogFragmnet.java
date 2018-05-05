@@ -12,13 +12,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
+/**AbstractSimpleDialogFragmnet
  * Created by Administrator on 2018/5/4.
  */
 
 public abstract class AbstractSimpleDialogFragmnet extends DialogFragment {
 
-    private View rootView;
+    protected View rootView;
     private Unbinder unbinder;
     private CompositeDisposable compositeDisposable;
 
@@ -42,7 +42,7 @@ public abstract class AbstractSimpleDialogFragmnet extends DialogFragment {
 
     /**
      * 获取布局id
-     * @return
+     * @return 布局id
      */
     protected abstract int getLayoutId();
 
@@ -52,6 +52,10 @@ public abstract class AbstractSimpleDialogFragmnet extends DialogFragment {
         super.onDestroyView();
         if(compositeDisposable != null){
             compositeDisposable.clear();
+        }
+
+        if(unbinder != null){
+            unbinder.unbind();
         }
     }
 }

@@ -4,6 +4,7 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
 import com.dream.wanandroid.model.bean.main.search.SearchData;
 import com.dream.wanandroid.model.bean.navigation.NavigationData;
@@ -88,5 +89,10 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     @Override
     public Observable<BaseResponse<SearchData>> getSearchData(int page, String key) {
         return mHttpHelper.getSearchData(page,key);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<OftenUseData>>> getOftenUseData() {
+        return mHttpHelper.getOftenUseData();
     }
 }

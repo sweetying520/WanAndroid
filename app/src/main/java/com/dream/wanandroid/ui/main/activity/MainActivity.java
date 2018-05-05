@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.dream.wanandroid.R;
@@ -27,6 +26,8 @@ import com.dream.wanandroid.common.MyConstant;
 import com.dream.wanandroid.contract.main.MainContract;
 import com.dream.wanandroid.presenter.main.MainPresenter;
 import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.dream.wanandroid.ui.main.fragment.SearchDialogFragment;
+import com.dream.wanandroid.ui.main.fragment.UsageDialogFragment;
 import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
 import com.dream.wanandroid.ui.navigation.fragment.NavigationFragment;
 import com.dream.wanandroid.ui.project.fragment.ProjectFragment;
@@ -46,8 +47,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView tvToolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.fragment_group)
-    FrameLayout fragmentGroup;
+
     @BindView(R.id.fab_main)
     FloatingActionButton fabMain;
     @BindView(R.id.bottom_nav_view)
@@ -92,10 +92,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search:
-
+                SearchDialogFragment searchDialogFragment = new SearchDialogFragment();
+                searchDialogFragment.show(getSupportFragmentManager(), "SearchDialogFragment");
                 break;
             case R.id.usage:
-
+                UsageDialogFragment usageDialogFragment = new UsageDialogFragment();
+                usageDialogFragment.show(getSupportFragmentManager(),"UsageDialogFragment");
                 break;
         }
         return true;
@@ -259,22 +261,22 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void jumpToTop() {
         switch (mPresenter.getCurrentPage()) {
             case MyConstant.TYPE_MAIN_PAGER:
-                if(homePagerFragment != null){
+                if (homePagerFragment != null) {
                     homePagerFragment.jumpToTop();
                 }
                 break;
             case MyConstant.TYPE_KNOWLEDGE:
-                if(knowledgeHierarchyFragment != null){
+                if (knowledgeHierarchyFragment != null) {
                     knowledgeHierarchyFragment.jumpToTop();
                 }
                 break;
             case MyConstant.TYPE_NAVIGATION:
-                if(navigationFragment != null){
+                if (navigationFragment != null) {
                     navigationFragment.jumpToTop();
                 }
                 break;
             case MyConstant.TYPE_PROJECT:
-                if(projectFragment != null){
+                if (projectFragment != null) {
                     projectFragment.jumpToTop();
                 }
                 break;
@@ -308,7 +310,14 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     @OnClick(R.id.fab_main)
-    public void onClick() {
-        jumpToTop();
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.fab_main:
+                jumpToTop();
+                break;
+            default:
+                break;
+        }
+
     }
 }
