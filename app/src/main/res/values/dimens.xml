@@ -13,6 +13,7 @@
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_20">20sp</dimen>
     <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_36">36sp</dimen>
     <!--边距-->
     <dimen name="space">16dp</dimen>
     <!--产品详情页ViewPager指示器的大小-->

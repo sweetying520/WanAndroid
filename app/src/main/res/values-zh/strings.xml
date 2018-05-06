@@ -18,6 +18,7 @@
     <string name="usage">常用网站</string>
     <string name="nav_open">打开侧栏</string>
     <string name="nav_close">关闭侧栏</string>
+    <string name="login_in">登录</string>
 
     //通用
     <string name="http_error">网络异常</string>
@@ -51,4 +52,13 @@
     <string name="history_search">搜索历史</string>
     <string name="search_tint">发现更多干货</string>
     <string name="search_event">搜索</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+
+    <string name="login_tint">请输入用户名</string>
+    <string name="register_tint">请输入密码</string>
+
+
+
+
 </resources>

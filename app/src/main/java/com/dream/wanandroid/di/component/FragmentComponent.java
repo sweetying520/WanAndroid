@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.dream.wanandroid.di.module.FragmentModule;
 import com.dream.wanandroid.di.scope.FragmentScope;
 import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.dream.wanandroid.ui.like.fragment.LikeFragment;
 import com.dream.wanandroid.ui.main.fragment.SearchDialogFragment;
 import com.dream.wanandroid.ui.main.fragment.UsageDialogFragment;
 import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
@@ -71,5 +72,12 @@ public interface FragmentComponent {
      * @param searchDialogFragment searchDialogFragment
      */
     void inject(SearchDialogFragment searchDialogFragment);
+
+    /**
+     *
+     * @param likeFragment likeFragment
+     */
+    void inject(LikeFragment likeFragment);
+
 
 }

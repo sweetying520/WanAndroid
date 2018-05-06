@@ -80,4 +80,9 @@ public class RetrofitHelper implements HttpHelper{
     public Observable<BaseResponse<List<OftenUseData>>> getOftenUseData() {
         return mWanAndroidApi.getOftenUseData();
     }
+
+    @Override
+    public Observable<BaseResponse<FeedArticleListData>> getCollectList(int page) {
+        return mWanAndroidApi.getCollectList(page);
+    }
 }

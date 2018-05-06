@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.dream.wanandroid.common.MyConstant;
 import com.dream.wanandroid.contract.main.MainContract;
 import com.dream.wanandroid.presenter.main.MainPresenter;
 import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.dream.wanandroid.ui.like.fragment.LikeFragment;
 import com.dream.wanandroid.ui.main.fragment.SearchDialogFragment;
 import com.dream.wanandroid.ui.main.fragment.UsageDialogFragment;
 import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
@@ -63,6 +65,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private KnowledgeHierarchyFragment knowledgeHierarchyFragment;
     private NavigationFragment navigationFragment;
     private ProjectFragment projectFragment;
+    private LikeFragment likeFragment;
 
     @Override
     protected void initEventAndData() {
@@ -133,8 +136,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private void swicthFragment(int position) {
         if (position >= MyConstant.TYPE_COLLECT) {
             fabMain.setVisibility(View.INVISIBLE);
+            bottomNavView.setVisibility(View.INVISIBLE);
         } else {
             fabMain.setVisibility(View.VISIBLE);
+            bottomNavView.setVisibility(View.VISIBLE);
         }
 
         if (position >= fragmentList.size()) {
@@ -182,14 +187,31 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     }
 
+    private void switchCollect() {
+        tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.collect));
+        swicthFragment(MyConstant.TYPE_COLLECT);
+        drawerMain.closeDrawer(Gravity.START);
+    }
+
+    private void startMainPager(){
+        tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.home));
+        bottomNavView.setSelectedItemId(R.id.tab_home);
+        drawerMain.closeDrawer(Gravity.START);
+    }
+
+
+
+
 
     private void initData() {
         knowledgeHierarchyFragment = KnowledgeHierarchyFragment.getInstance(null, null);
         navigationFragment = NavigationFragment.getInstance(null, null);
         projectFragment = ProjectFragment.getInstance(null, null);
+        likeFragment = LikeFragment.getInstance(null,null);
         fragmentList.add(knowledgeHierarchyFragment);
         fragmentList.add(navigationFragment);
         fragmentList.add(projectFragment);
+        fragmentList.add(likeFragment);
     }
 
     private void init() {
@@ -284,14 +306,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initNavView() {
-//        navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
-//            return true;
-//        });
-//
-//        navView.getMenu().findItem(R.id.collect).setOnMenuItemClickListener(item -> {
-//
-//            return true;
-//        });
+        navView.getHeaderView(0).findViewById(R.id.tv_log_state).setOnClickListener(v -> startActivity(new Intent(this,LoginActivity.class)));
+        navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
+            startMainPager();
+            return true;
+        });
+
+        navView.getMenu().findItem(R.id.collect).setOnMenuItemClickListener(item -> {
+            switchCollect();
+            return true;
+        });
 //
 //        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
 //
@@ -309,7 +333,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 //        });
     }
 
-    @OnClick(R.id.fab_main)
+    @OnClick({R.id.fab_main})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.fab_main:

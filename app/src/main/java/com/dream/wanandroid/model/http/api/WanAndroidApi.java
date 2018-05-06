@@ -108,4 +108,14 @@ public interface WanAndroidApi {
      */
     @GET("friend/json")
     Observable<BaseResponse<List<OftenUseData>>> getOftenUseData();
+
+    /**
+     * 获取收藏列表
+     * http://www.wanandroid.com/lg/collect/list/0/json
+     *
+     * @param page page number
+     * @return 收藏列表数据
+     */
+    @GET("lg/collect/list/{page}/json")
+    Observable<BaseResponse<FeedArticleListData>> getCollectList(@Path("page") int page);
 }

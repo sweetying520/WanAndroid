@@ -88,4 +88,13 @@ public interface HttpHelper {
      * @return 常用网站
      */
     Observable<BaseResponse<List<OftenUseData>>> getOftenUseData();
+
+    /**
+     * 获取收藏列表
+     * http://www.wanandroid.com/lg/collect/list/0/json
+     *
+     * @param page page number
+     * @return 收藏列表数据
+     */
+    Observable<BaseResponse<FeedArticleListData>> getCollectList(int page);
 }

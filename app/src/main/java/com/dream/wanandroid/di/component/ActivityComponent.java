@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.dream.wanandroid.di.module.ActivityModule;
 import com.dream.wanandroid.di.scope.ActivityScope;
+import com.dream.wanandroid.ui.main.activity.LoginActivity;
 import com.dream.wanandroid.ui.main.activity.SplashActivity;
 import com.dream.wanandroid.ui.main.activity.MainActivity;
 
@@ -37,5 +38,12 @@ public interface ActivityComponent {
      * @param  mainActivity
      */
     void inject(MainActivity mainActivity);
+
+    /**
+     * 注入LoginActivity所需的依赖
+     *
+     * @param  loginActivity
+     */
+    void inject(LoginActivity loginActivity);
 
 }

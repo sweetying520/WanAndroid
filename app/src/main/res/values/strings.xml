@@ -19,6 +19,7 @@
     <string name="usage">Usage</string>
     <string name="nav_open">Open DrawerLayout</string>
     <string name="nav_close">Close DrawerLayout</string>
+    <string name="login_in">Login</string>
 
     //Common
     <string name="http_error">network anomaly</string>
@@ -53,4 +54,9 @@
 
     <string name="search_tint">Find more dry goods</string>
     <string name="history_search">Search History</string>
+
+    <string name="register_tint">Please enter your password</string>
+    <string name="login_tint">Please enter your username</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>

@@ -95,4 +95,9 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     public Observable<BaseResponse<List<OftenUseData>>> getOftenUseData() {
         return mHttpHelper.getOftenUseData();
     }
+
+    @Override
+    public Observable<BaseResponse<FeedArticleListData>> getCollectList(int page) {
+        return mHttpHelper.getCollectList(page);
+    }
 }
