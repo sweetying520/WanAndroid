@@ -4,6 +4,7 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.login.LoginData;
 import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
 import com.dream.wanandroid.model.bean.main.search.SearchData;
@@ -14,6 +15,7 @@ import com.dream.wanandroid.model.http.HttpHelper;
 import com.dream.wanandroid.model.prefs.PreferenceHelper;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -99,5 +101,15 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     @Override
     public Observable<BaseResponse<FeedArticleListData>> getCollectList(int page) {
         return mHttpHelper.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> getLoginData(Map<String, String> loginParams) {
+        return mHttpHelper.getLoginData(loginParams);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> getRegisterData(Map<String, String> registerParams) {
+        return mHttpHelper.getRegisterData(registerParams);
     }
 }

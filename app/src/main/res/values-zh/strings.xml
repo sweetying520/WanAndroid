@@ -13,12 +13,17 @@
     <string name="setting">设置</string>
     <string name="about">关于我们</string>
     <string name="logout">退出登录</string>
-
+    <string name="login_fail">登录失败ヽ(≧Д≦)ノ</string>
+    <string name="register_fail">注册失败ヽ(≧Д≦)ノ</string>
+    <string name="account_password_null_tint">用户名或密码不能为空</string>
     <string name="search">热搜</string>
     <string name="usage">常用网站</string>
     <string name="nav_open">打开侧栏</string>
     <string name="nav_close">关闭侧栏</string>
     <string name="login_in">登录</string>
+    <string name="login_account_tint">请输入用户名</string>
+    <string name="login_password_tint">请输入密码</string>
+    <string name="login_confirm_password_tint">请输入确认密码</string>
 
     //通用
     <string name="http_error">网络异常</string>

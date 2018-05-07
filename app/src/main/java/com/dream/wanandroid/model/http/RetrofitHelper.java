@@ -4,6 +4,7 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.login.LoginData;
 import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
 import com.dream.wanandroid.model.bean.main.search.SearchData;
@@ -13,6 +14,7 @@ import com.dream.wanandroid.model.bean.project.ProjectTabData;
 import com.dream.wanandroid.model.http.api.WanAndroidApi;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -84,5 +86,15 @@ public class RetrofitHelper implements HttpHelper{
     @Override
     public Observable<BaseResponse<FeedArticleListData>> getCollectList(int page) {
         return mWanAndroidApi.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> getLoginData(Map<String, String> loginParams) {
+        return mWanAndroidApi.getLoginData(loginParams);
+    }
+
+    @Override
+    public Observable<BaseResponse<LoginData>> getRegisterData(Map<String, String> registerParams) {
+        return mWanAndroidApi.getRegisterData(registerParams);
     }
 }

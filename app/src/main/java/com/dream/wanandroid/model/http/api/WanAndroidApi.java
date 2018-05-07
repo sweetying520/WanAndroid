@@ -4,6 +4,7 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.login.LoginData;
 import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
 import com.dream.wanandroid.model.bean.main.search.SearchData;
@@ -12,9 +13,11 @@ import com.dream.wanandroid.model.bean.project.ProjectListData;
 import com.dream.wanandroid.model.bean.project.ProjectTabData;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -118,4 +121,22 @@ public interface WanAndroidApi {
      */
     @GET("lg/collect/list/{page}/json")
     Observable<BaseResponse<FeedArticleListData>> getCollectList(@Path("page") int page);
+
+    /**
+     * 登录
+     * @param loginParams loginParams
+     * @return 登录后的数据
+     */
+    @FormUrlEncoded
+    @POST("user/login")
+    Observable<BaseResponse<LoginData>> getLoginData(@FieldMap Map<String,String> loginParams);
+
+    /**
+     * 注册
+     * @param registerParams registerParams
+     * @return 注册
+     */
+    @FormUrlEncoded
+    @POST("user/register")
+    Observable<BaseResponse<LoginData>> getRegisterData(@FieldMap Map<String,String> registerParams);
 }

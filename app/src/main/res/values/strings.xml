@@ -21,6 +21,12 @@
     <string name="nav_close">Close DrawerLayout</string>
     <string name="login_in">Login</string>
 
+    <string name="login_fail">Login fail</string>
+    <string name="register_fail">Register fail</string>
+    <string name="account_password_null_tint">The user name or password cannot be empty</string>
+    <string name="login_account_tint">Please enter user name</string>
+    <string name="login_password_tint">Please enter password</string>
+    <string name="login_confirm_password_tint">Please enter password confirmation</string>
     //Common
     <string name="http_error">network anomaly</string>
     <string name="unKnown_error">unKnown error</string>

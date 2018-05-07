@@ -4,6 +4,7 @@ import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
+import com.dream.wanandroid.model.bean.main.login.LoginData;
 import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
 import com.dream.wanandroid.model.bean.main.search.SearchData;
@@ -12,6 +13,7 @@ import com.dream.wanandroid.model.bean.project.ProjectListData;
 import com.dream.wanandroid.model.bean.project.ProjectTabData;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -97,4 +99,19 @@ public interface HttpHelper {
      * @return 收藏列表数据
      */
     Observable<BaseResponse<FeedArticleListData>> getCollectList(int page);
+
+    /**
+     * 登录
+     * @param loginParams loginParams
+     * @return 登录后的数据
+     */
+
+    Observable<BaseResponse<LoginData>> getLoginData(Map<String,String> loginParams);
+
+    /**
+     * 注册
+     * @param registerParams registerParams
+     * @return 注册
+     */
+    Observable<BaseResponse<LoginData>> getRegisterData(Map<String,String> registerParams);
 }
