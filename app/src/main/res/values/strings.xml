@@ -65,4 +65,10 @@
     <string name="login_tint">Please enter your username</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="password_not_same">Passwords don\'t match</string>
+    <string name="login_success">Login Success</string>
+
+    <string name="ok">OK</string>
+    <string name="no">NO</string>
+    <string name="logout_tint">Log out?</string>
 </resources>

@@ -29,6 +29,15 @@
         <!--<item name="android:backgroundDimEnabled">false</item>--><!--这个说明是否充许对话框的背景变暗。为true则充许变暗-->
     </style>
 
+    <style name="CommonDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item> <!--这个说明提示框是否有标题-->
+        <item name="android:windowBackground">@drawable/dialog_corner_bg</item><!--这个说明提示框的背景颜色是什么-->
+      <item name="android:backgroundDimEnabled">true</item><!--这个说明是否充许对话框的背景变暗。为true则充许变暗-->
+    </style>
+
+
+
+
 
     <style name="DialogStyleAnimation" parent="@android:style/Animation">
 

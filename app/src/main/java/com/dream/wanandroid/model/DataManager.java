@@ -47,6 +47,36 @@ public class DataManager implements HttpHelper,PreferenceHelper{
         return mPreferenceHelper.getCurrentPage();
     }
 
+    @Override
+    public void setLoginUsername(String username) {
+        mPreferenceHelper.setLoginUsername(username);
+    }
+
+    @Override
+    public void setLoginPassword(String password) {
+        mPreferenceHelper.setLoginPassword(password);
+    }
+
+    @Override
+    public String getLoginUsername() {
+        return mPreferenceHelper.getLoginUsername();
+    }
+
+    @Override
+    public String getLoginPassword() {
+        return mPreferenceHelper.getLoginPassword();
+    }
+
+    @Override
+    public void setLoginStatus(boolean isLogin) {
+        mPreferenceHelper.setLoginStatus(isLogin);
+    }
+
+    @Override
+    public boolean getLoginStatus() {
+        return mPreferenceHelper.getLoginStatus();
+    }
+
 
     @Override
     public Observable<BaseResponse<FeedArticleListData>> getFeedArticleList(int page) {

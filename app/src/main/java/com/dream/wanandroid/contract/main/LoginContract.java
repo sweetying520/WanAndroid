@@ -24,5 +24,9 @@ public interface LoginContract {
     interface Presenter extends IBasePresenter<View>{
         void getLoginData(Map<String, String> loginParams);
         void getRegisterParams(Map<String, String> loginParams);
+
+        void setLoginUsername(String username);
+
+        void setLoginPassword(String password);
     }
 }

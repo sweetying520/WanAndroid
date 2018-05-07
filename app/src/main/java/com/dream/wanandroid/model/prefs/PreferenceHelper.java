@@ -20,6 +20,19 @@ public interface PreferenceHelper {
      */
     int getCurrentPage();
 
+    void setLoginUsername(String username);
+
+    void setLoginPassword(String passowrd);
+
+    String getLoginUsername();
+
+    String getLoginPassword();
+
+    void setLoginStatus(boolean isLogin);
+
+    boolean getLoginStatus();
+
+
 
 
 }

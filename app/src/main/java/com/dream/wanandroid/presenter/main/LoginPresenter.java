@@ -56,4 +56,14 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                     }
                 }));
     }
+
+    @Override
+    public void setLoginUsername(String username) {
+        mDataManager.setLoginUsername(username);
+    }
+
+    @Override
+    public void setLoginPassword(String password) {
+        mDataManager.setLoginPassword(password);
+    }
 }

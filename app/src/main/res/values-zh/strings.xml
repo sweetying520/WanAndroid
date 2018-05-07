@@ -59,11 +59,14 @@
     <string name="search_event">搜索</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
-
+    <string name="login_success">登录成功n(*≧▽≦*)n</string>
     <string name="login_tint">请输入用户名</string>
     <string name="register_tint">请输入密码</string>
+    <string name="password_not_same">密码不匹配</string>
 
-
+    <string name="logout_tint">退出登录?</string>
+    <string name="ok">是</string>
+    <string name="no">否</string>
 
 
 </resources>

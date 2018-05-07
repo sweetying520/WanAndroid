@@ -61,4 +61,19 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
     public int getCurrentPage() {
         return mDataManager.getCurrentPage();
     }
+
+    @Override
+    public void setLoginStatus(boolean isLogin) {
+        mDataManager.setLoginStatus(isLogin);
+    }
+
+    @Override
+    public boolean getLoginStatus() {
+        return mDataManager.getLoginStatus();
+    }
+
+    @Override
+    public String getLoginUsername() {
+        return mDataManager.getLoginUsername();
+    }
 }

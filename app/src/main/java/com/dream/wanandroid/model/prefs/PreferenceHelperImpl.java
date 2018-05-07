@@ -10,8 +10,7 @@ import javax.inject.Inject;
 
 
 /**
- * @author quchao
- * @date 2017/11/27
+ * PreferenceHelperImpl
  */
 
 public class PreferenceHelperImpl implements PreferenceHelper {
@@ -32,5 +31,35 @@ public class PreferenceHelperImpl implements PreferenceHelper {
     @Override
     public int getCurrentPage() {
         return mPreferences.getInt(MyConstant.CURRENT_PAGE, 0);
+    }
+
+    @Override
+    public void setLoginUsername(String username) {
+        mPreferences.edit().putString(MyConstant.ACCOUNT,username).apply();
+    }
+
+    @Override
+    public void setLoginPassword(String password) {
+        mPreferences.edit().putString(MyConstant.PASSWORD,password).apply();
+    }
+
+    @Override
+    public String getLoginUsername() {
+        return mPreferences.getString(MyConstant.ACCOUNT,"");
+    }
+
+    @Override
+    public String getLoginPassword() {
+        return mPreferences.getString(MyConstant.PASSWORD,"");
+    }
+
+    @Override
+    public void setLoginStatus(boolean isLogin) {
+        mPreferences.edit().putBoolean(MyConstant.LOGIN_STATUS, isLogin).apply();
+    }
+
+    @Override
+    public boolean getLoginStatus() {
+        return mPreferences.getBoolean(MyConstant.LOGIN_STATUS, false);
     }
 }

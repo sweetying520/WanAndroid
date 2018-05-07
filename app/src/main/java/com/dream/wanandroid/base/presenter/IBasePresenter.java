@@ -25,5 +25,11 @@ public interface IBasePresenter<V extends IBaseView> {
 
     int getCurrentPage();
 
+    void setLoginStatus(boolean isLogin);
+
+    boolean getLoginStatus();
+
+    String getLoginUsername();
+
 
 }

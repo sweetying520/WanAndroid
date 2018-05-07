@@ -25,6 +25,8 @@ import com.dream.wanandroid.base.activity.BaseActivity;
 import com.dream.wanandroid.base.fragment.BaseFragment;
 import com.dream.wanandroid.common.MyConstant;
 import com.dream.wanandroid.contract.main.MainContract;
+import com.dream.wanandroid.model.event.LoginEvent;
+import com.dream.wanandroid.model.http.cookies.CookiesManager;
 import com.dream.wanandroid.presenter.main.MainPresenter;
 import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
 import com.dream.wanandroid.ui.like.fragment.LikeFragment;
@@ -34,7 +36,9 @@ import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
 import com.dream.wanandroid.ui.navigation.fragment.NavigationFragment;
 import com.dream.wanandroid.ui.project.fragment.ProjectFragment;
 import com.dream.wanandroid.utils.BottomNavigationViewHelper;
+import com.dream.wanandroid.utils.RxBus;
 import com.dream.wanandroid.utils.StatusBarUtils;
+import com.dream.wanandroid.widget.CommonAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +69,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private KnowledgeHierarchyFragment knowledgeHierarchyFragment;
     private NavigationFragment navigationFragment;
     private ProjectFragment projectFragment;
-    private LikeFragment likeFragment;
+
+    private TextView tvStatus;
 
     @Override
     protected void initEventAndData() {
@@ -207,7 +212,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         knowledgeHierarchyFragment = KnowledgeHierarchyFragment.getInstance(null, null);
         navigationFragment = NavigationFragment.getInstance(null, null);
         projectFragment = ProjectFragment.getInstance(null, null);
-        likeFragment = LikeFragment.getInstance(null,null);
+        LikeFragment likeFragment = LikeFragment.getInstance(null, null);
         fragmentList.add(knowledgeHierarchyFragment);
         fragmentList.add(navigationFragment);
         fragmentList.add(projectFragment);
@@ -306,7 +311,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
     private void initNavView() {
-        navView.getHeaderView(0).findViewById(R.id.tv_log_state).setOnClickListener(v -> startActivity(new Intent(this,LoginActivity.class)));
+        if(mPresenter.getLoginStatus()){
+            showLoginView();
+        }else {
+            showLogoutView();
+        }
+
         navView.getMenu().findItem(R.id.wanandroid).setOnMenuItemClickListener(item -> {
             startMainPager();
             return true;
@@ -327,10 +337,29 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             return true;
         });
 
-//        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(item -> {
-//
-//            return true;
-//        });
+        navView.getMenu().findItem(R.id.logout).setOnMenuItemClickListener(item -> {
+            logout();
+            return true;
+        });
+    }
+
+    /**
+     * 登出
+     */
+    private void logout() {
+        CommonAlertDialog.getInstance().showDialog(this,
+                getString(R.string.logout_tint),
+                getString(R.string.ok),
+                getString(R.string.no),
+                v -> {
+                    CommonAlertDialog.getInstance().cancelDialog();
+                    navView.getMenu().findItem(R.id.logout).setVisible(false);
+                    CookiesManager.clearAllCookies();
+                    mPresenter.setLoginStatus(false);
+                    RxBus.getDefault().post(new LoginEvent(false));
+                    startActivity(new Intent(this,LoginActivity.class));
+                },
+                v -> CommonAlertDialog.getInstance().cancelDialog());
     }
 
     @OnClick({R.id.fab_main})
@@ -343,5 +372,35 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 break;
         }
 
+    }
+
+    /**
+     * 登录
+     */
+    @Override
+    public void showLoginView() {
+        tvStatus = navView.getHeaderView(0).findViewById(R.id.tv_log_state);
+        tvStatus.setText(mPresenter.getLoginUsername());
+        tvStatus.setOnClickListener(null);
+
+        navView.getMenu().findItem(R.id.logout).setVisible(true);
+    }
+
+    /**
+     * 登出
+     */
+    @Override
+    public void showLogoutView() {
+        tvStatus = navView.getHeaderView(0).findViewById(R.id.tv_log_state);
+        tvStatus.setText(getString(R.string.login));
+        tvStatus.setOnClickListener(v -> startActivity(new Intent(this,LoginActivity.class)));
+
+        navView.getMenu().findItem(R.id.logout).setVisible(false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonAlertDialog.getInstance().cancelDialog();
     }
 }
