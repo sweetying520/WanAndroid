@@ -2,6 +2,8 @@ package com.dream.wanandroid.di.module;
 
 import com.dream.wanandroid.WanAndroidApp;
 import com.dream.wanandroid.model.DataManager;
+import com.dream.wanandroid.model.db.DbHelper;
+import com.dream.wanandroid.model.db.GreenDaoHelper;
 import com.dream.wanandroid.model.http.HttpHelper;
 import com.dream.wanandroid.model.http.RetrofitHelper;
 import com.dream.wanandroid.model.prefs.PreferenceHelper;
@@ -12,7 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-/**
+/**AppModule
  * Created by Administrator on 2018/4/28.
  */
 
@@ -44,8 +46,14 @@ public class AppModule {
 
     @Provides
     @Singleton
-    DataManager provideDataManager(HttpHelper httpHelper, PreferenceHelper preferenceHelper){
-        return new DataManager(httpHelper,preferenceHelper);
+    DbHelper provideDbHelper(GreenDaoHelper greenDaoHelper){
+        return greenDaoHelper;
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(HttpHelper httpHelper, PreferenceHelper preferenceHelper,DbHelper dbHelper){
+        return new DataManager(httpHelper,preferenceHelper,dbHelper);
     }
 
 

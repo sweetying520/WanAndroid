@@ -1,5 +1,6 @@
 package com.dream.wanandroid.ui.mainpager.fragment;
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.dream.wanandroid.model.bean.main.banner.BannerData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleData;
 import com.dream.wanandroid.model.bean.main.collect.FeedArticleListData;
 import com.dream.wanandroid.presenter.mainpager.HomePagerPresenter;
+import com.dream.wanandroid.ui.main.activity.ArticleDetailActivity;
 import com.dream.wanandroid.ui.mainpager.adapter.HomePagerAdapter;
 import com.dream.wanandroid.utils.CommonUtils;
 import com.dream.wanandroid.utils.GlideImageLoader;
@@ -46,11 +48,11 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
     private Banner mBanner;
 
 
-    public static HomePagerFragment getInstance(boolean params1,String params2){
+    public static HomePagerFragment getInstance(boolean params1, String params2) {
         HomePagerFragment fragment = new HomePagerFragment();
         Bundle bundle = new Bundle();
-        bundle.putBoolean(MyConstant.ARG_PARAM1,params1);
-        bundle.putString(MyConstant.ARG_PARAM2,params2);
+        bundle.putBoolean(MyConstant.ARG_PARAM1, params1);
+        bundle.putString(MyConstant.ARG_PARAM2, params2);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -74,7 +76,7 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
         setRefresh();
         mPresenter.autoRefresh();
 
-        if(CommonUtils.isNetworkConnected()){
+        if (CommonUtils.isNetworkConnected()) {
             showLoadingView();
         }
 
@@ -82,8 +84,8 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
 
     @Override
     public void reload() {
-        if(CommonUtils.isNetworkConnected()){
-           smartRefreshLayout.autoRefresh();
+        if (CommonUtils.isNetworkConnected()) {
+            smartRefreshLayout.autoRefresh();
         }
     }
 
@@ -107,23 +109,34 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
         mHomePagerAdapter = new HomePagerAdapter(R.layout.item_home_pager, dataList);
 
 
-        View headView = LayoutInflater.from(_mActivity).inflate(R.layout.item_home_banner,null);
+        View headView = LayoutInflater.from(_mActivity).inflate(R.layout.item_home_banner, null);
         mBanner = headView.findViewById(R.id.banner);
         mHomePagerAdapter.addHeaderView(headView);
+
         mHomePagerAdapter.setOnItemClickListener((adapter, view, position) -> {
-            CommonUtils.showMessage(_mActivity,"项目");
+            ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.share_view));
+            ArticleDetailActivity.start(
+                    _mActivity,
+                    activityOptions,
+                    mHomePagerAdapter.getData().get(position).getId(),
+                    mHomePagerAdapter.getData().get(position).getTitle(),
+                    mHomePagerAdapter.getData().get(position).getLink(),
+                    mHomePagerAdapter.getData().get(position).isCollect(),
+                    false,
+                    false
+            );
         });
 
         mHomePagerAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.tv_subject:
-                    CommonUtils.showMessage(_mActivity,"tv_subject");
+                    CommonUtils.showMessage(_mActivity, "tv_subject");
                     break;
                 case R.id.iv_like:
-                    CommonUtils.showMessage(_mActivity,"iv_like");
+                    CommonUtils.showMessage(_mActivity, "iv_like");
                     break;
                 case R.id.tv_is_project:
-                    CommonUtils.showMessage(_mActivity,"tv_is_project");
+                    CommonUtils.showMessage(_mActivity, "tv_is_project");
                     break;
             }
         });
@@ -144,16 +157,16 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
 
     @Override
     public void showArticleList(BaseResponse<FeedArticleListData> articleData, boolean isRefresh) {
-        if(articleData == null || articleData.getData() == null || articleData.getData().getDatas() == null){
+        if (articleData == null || articleData.getData() == null || articleData.getData().getDatas() == null) {
             showArticleListFail();
             return;
         }
 
         homePagerRv.setVisibility(View.VISIBLE);
-        if(isRefresh){
+        if (isRefresh) {
             dataList = articleData.getData().getDatas();
             mHomePagerAdapter.replaceData(articleData.getData().getDatas());
-        }else {
+        } else {
             dataList.addAll(articleData.getData().getDatas());
             mHomePagerAdapter.addData(articleData.getData().getDatas());
         }
@@ -162,7 +175,7 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
 
     @Override
     public void showArticleListFail() {
-        CommonUtils.showSnackMessage(_mActivity,getString(R.string.failed_to_obtain_article_list));
+        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_article_list));
     }
 
     @Override
@@ -177,7 +190,7 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
 
     @Override
     public void showBannerData(BaseResponse<List<BannerData>> bannerResponse) {
-        if(bannerResponse == null || bannerResponse.getData() == null){
+        if (bannerResponse == null || bannerResponse.getData() == null) {
             return;
         }
 
@@ -208,21 +221,21 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
 
     }
 
-    public void jumpToTop(){
-        if(homePagerRv != null){
+    public void jumpToTop() {
+        if (homePagerRv != null) {
             homePagerRv.smoothScrollToPosition(0);
         }
     }
 
     @Override
     public void showBannerDataFail() {
-        CommonUtils.showSnackMessage(_mActivity,getString(R.string.failed_to_obtain_banner_data));
+        CommonUtils.showSnackMessage(_mActivity, getString(R.string.failed_to_obtain_banner_data));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(mBanner != null){
+        if (mBanner != null) {
             mBanner.startAutoPlay();
         }
     }
@@ -230,7 +243,7 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
     @Override
     public void onStop() {
         super.onStop();
-        if(mBanner != null){
+        if (mBanner != null) {
             mBanner.stopAutoPlay();
         }
     }

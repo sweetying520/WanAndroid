@@ -20,6 +20,7 @@
     <string name="hour">小时</string>
     <string name="one_day">1天</string>
     <string name="text_new">新</string>
+    <string name="share_view">ShareView</string>
 </resources>
 
 <!--

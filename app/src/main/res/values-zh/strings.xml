@@ -68,5 +68,6 @@
     <string name="ok">是</string>
     <string name="no">否</string>
 
-
+    <string name="share">分享</string>
+    <string name="open_it_with_browser">用系统浏览器打开</string>
 </resources>

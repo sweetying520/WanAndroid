@@ -35,7 +35,7 @@ public class HomePagerAdapter extends BaseQuickAdapter<FeedArticleData, HomPager
         }
 
         if (!TextUtils.isEmpty(item.getTitle())) {
-            helper.setText(R.id.tv_summary, item.getTitle());
+            helper.setText(R.id.tv_summary, Html.fromHtml(item.getTitle()));
         }
 
         if (!TextUtils.isEmpty(item.getNiceDate())) {

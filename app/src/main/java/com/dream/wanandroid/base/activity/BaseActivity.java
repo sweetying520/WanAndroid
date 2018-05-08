@@ -7,6 +7,7 @@ import com.dream.wanandroid.base.view.IBaseView;
 import com.dream.wanandroid.di.component.ActivityComponent;
 import com.dream.wanandroid.di.component.DaggerActivityComponent;
 import com.dream.wanandroid.di.module.ActivityModule;
+import com.dream.wanandroid.utils.CommonUtils;
 
 import javax.inject.Inject;
 
@@ -93,6 +94,6 @@ public abstract class BaseActivity <P extends IBasePresenter> extends AbstractSi
 
     @Override
     public void showErrorMsg(String errorMsg) {
-
+        CommonUtils.showSnackMessage(mActivity,errorMsg);
     }
 }

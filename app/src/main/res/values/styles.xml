@@ -37,6 +37,9 @@
 
 
 
+    <style name="Toolbar.TextStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/text_size_16</item>
+    </style>
 
 
     <style name="DialogStyleAnimation" parent="@android:style/Animation">

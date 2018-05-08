@@ -11,6 +11,8 @@ import com.dream.wanandroid.model.bean.main.search.SearchData;
 import com.dream.wanandroid.model.bean.navigation.NavigationData;
 import com.dream.wanandroid.model.bean.project.ProjectListData;
 import com.dream.wanandroid.model.bean.project.ProjectTabData;
+import com.dream.wanandroid.model.dao.HistoryData;
+import com.dream.wanandroid.model.db.DbHelper;
 import com.dream.wanandroid.model.http.HttpHelper;
 import com.dream.wanandroid.model.prefs.PreferenceHelper;
 
@@ -23,15 +25,17 @@ import io.reactivex.Observable;
  * Created by Administrator on 2018/4/27.
  */
 
-public class DataManager implements HttpHelper,PreferenceHelper{
+public class DataManager implements HttpHelper,PreferenceHelper,DbHelper{
 
     private HttpHelper mHttpHelper;
     private PreferenceHelper mPreferenceHelper;
+    private DbHelper mDbHelper;
 
 
-    public DataManager(HttpHelper httpHelper, PreferenceHelper preferencesHelper) {
+    public DataManager(HttpHelper httpHelper, PreferenceHelper preferencesHelper,DbHelper dbHelper) {
         mHttpHelper = httpHelper;
         mPreferenceHelper = preferencesHelper;
+        mDbHelper = dbHelper;
     }
 
 
@@ -141,5 +145,20 @@ public class DataManager implements HttpHelper,PreferenceHelper{
     @Override
     public Observable<BaseResponse<LoginData>> getRegisterData(Map<String, String> registerParams) {
         return mHttpHelper.getRegisterData(registerParams);
+    }
+
+    @Override
+    public void addHistoryData(String data) {
+        mDbHelper.addHistoryData(data);
+    }
+
+    @Override
+    public void clearHistoryData() {
+        mDbHelper.clearHistoryData();
+    }
+
+    @Override
+    public List<HistoryData> getHistoryData() {
+        return mDbHelper.getHistoryData();
     }
 }

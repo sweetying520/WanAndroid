@@ -10,7 +10,7 @@ import com.dream.wanandroid.R;
 import com.dream.wanandroid.base.presenter.BasePresenter;
 
 
-/**
+/**AbstractRootActivity
  * Created by Administrator on 2018/4/27.
  */
 
@@ -69,7 +69,7 @@ public abstract class AbstractRootActivity<P extends BasePresenter> extends Base
         switch (currentState){
             case LOADING_STATE:
                 mLottieAnimationView.cancelAnimation();
-                mNormalView.setVisibility(View.GONE);
+                mLoadingView.setVisibility(View.GONE);
                 break;
             case ERROR_STATE:
                 mErrorView.setVisibility(View.GONE);

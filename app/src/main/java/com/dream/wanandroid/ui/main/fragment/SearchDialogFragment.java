@@ -1,9 +1,12 @@
 package com.dream.wanandroid.ui.main.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -22,7 +25,10 @@ import com.dream.wanandroid.common.MyConstant;
 import com.dream.wanandroid.contract.main.SearchDialogContract;
 import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.main.search.HotSearchData;
+import com.dream.wanandroid.model.dao.HistoryData;
 import com.dream.wanandroid.presenter.main.SearchDialogPresenter;
+import com.dream.wanandroid.ui.main.activity.SearchListActivity;
+import com.dream.wanandroid.ui.main.adapter.SearchHistoryAdapter;
 import com.dream.wanandroid.utils.CommonUtils;
 import com.dream.wanandroid.utils.KeyBoardUtils;
 import com.dream.wanandroid.widget.CircularRevealAnim;
@@ -31,6 +37,8 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -54,12 +62,15 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchDialogPresent
     @BindView(R.id.tv_search_null)
     TextView tvSearchNull;
     @BindView(R.id.search_rv)
-    RecyclerView searchRv;
+    RecyclerView mRecyclerView;
     @BindView(R.id.tv_hint)
     TextView tvHint;
     @BindView(R.id.tv_search)
     TextView tvSearch;
+    @BindView(R.id.search_scroll)
+    NestedScrollView searchScroll;
     private CircularRevealAnim circularRevealAnim;
+    private SearchHistoryAdapter searchHistoryAdapter;
 
     @Override
     protected void initInject() {
@@ -93,8 +104,12 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchDialogPresent
         mPresenter.addRxBindingSubscribe(RxView.clicks(tvSearch)
                 .throttleFirst(MyConstant.CLICK_TIME_AREA, TimeUnit.MILLISECONDS)
                 .filter(o -> !TextUtils.isEmpty(editSearch.getText().toString().trim()))
-                .subscribe(o -> CommonUtils.showMessage(getActivity(), "等待开通")));
+                .subscribe(o -> {
+                    mPresenter.addHistoryData(editSearch.getText().toString().trim());
+                    setTvClearStatus(false);
+                }));
 
+        showHistoryData(mPresenter.getHistoryData());
         mPresenter.getHotSearchData();
     }
 
@@ -171,6 +186,14 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchDialogPresent
                 assert getActivity() != null;
                 tvTag.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
                 tvTag.setBackgroundColor(CommonUtils.randomTagColor());
+
+                flSearch.setOnTagClickListener((view, position1, parent1) -> {
+                    mPresenter.addHistoryData(listBaseResponse.getData().get(position1).getName());
+                    setTvClearStatus(false);
+                    editSearch.setText(listBaseResponse.getData().get(position1).getName());
+                    editSearch.setSelection(listBaseResponse.getData().get(position1).getName().length());
+                    return true;
+                });
                 return tvTag;
             }
         });
@@ -183,7 +206,33 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchDialogPresent
         CommonUtils.showSnackMessage(getActivity(), getString(R.string.failed_to_obtain_top_data));
     }
 
-    @OnClick({R.id.iv_back, R.id.tv_search, R.id.fab_search})
+    @Override
+    public void jumpToSearchListActivity() {
+        onBackEvent();
+        SearchListActivity.start(getActivity(),editSearch.getText().toString().trim());
+    }
+
+    @Override
+    public void showHistoryData(List<HistoryData> historyDataList) {
+        if(historyDataList == null || historyDataList.size() <= 0){
+            setTvClearStatus(true);
+            return;
+        }
+        setTvClearStatus(false);
+        Collections.reverse(historyDataList);
+        searchHistoryAdapter = new SearchHistoryAdapter(historyDataList);
+        searchHistoryAdapter.setOnItemClickListener((adapter, view, position) -> {
+            HistoryData historyData = searchHistoryAdapter.getData().get(position);
+            mPresenter.addHistoryData(historyData.getData());
+            setTvClearStatus(false);
+            editSearch.setText(historyData.getData());
+            editSearch.setSelection(historyData.getData().length());
+        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(searchHistoryAdapter);
+    }
+
+    @OnClick({R.id.iv_back, R.id.tv_search, R.id.fab_search,R.id.tv_clear})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -192,7 +241,35 @@ public class SearchDialogFragment extends BaseDialogFragment<SearchDialogPresent
             case R.id.tv_search:
                 break;
             case R.id.fab_search:
+                searchScroll.scrollTo(0,0);
+                break;
+            case R.id.tv_clear:
+                mPresenter.clearHistoryData();
+                searchHistoryAdapter.replaceData(new ArrayList<>());
+                setTvClearStatus(true);
                 break;
         }
+    }
+
+    private void setTvClearStatus(boolean isClearAll){
+        Drawable drawable;
+        tvClear.setEnabled(!isClearAll);
+        assert getActivity() != null;
+        if(isClearAll){
+            tvSearchNull.setVisibility(View.VISIBLE);
+            tvClear.setTextColor(ContextCompat.getColor(getActivity(),R.color.search_grey_gone));
+            drawable = ContextCompat.getDrawable(getActivity(),R.drawable.ic_clear_all_gone);
+            assert drawable != null;
+            drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+            tvClear.setCompoundDrawables(drawable,null,null,null);
+        }else {
+            tvSearchNull.setVisibility(View.GONE);
+            tvClear.setTextColor(ContextCompat.getColor(getActivity(),R.color.search_grey));
+            drawable = ContextCompat.getDrawable(getActivity(),R.drawable.ic_clear_all);
+            assert drawable != null;
+            drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+            tvClear.setCompoundDrawables(drawable,null,null,null);
+        }
+        tvClear.setCompoundDrawablePadding(CommonUtils.dp2px(6));
     }
 }

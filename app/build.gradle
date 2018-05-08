@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 27
@@ -23,6 +24,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+}
+
+greendao{
+    schemaVersion 1
 }
 
 dependencies {
@@ -68,6 +73,7 @@ dependencies {
     implementation "com.flyco.tablayout:FlycoTabLayout_Lib:$rootProject.tablayoutVersion"
     implementation "q.rorbin:VerticalTabLayout:$rootProject.verticalTabLayoutVersion"
     implementation "com.hyman:flowlayout-lib:$rootProject.flowlayoutVersion"
+    implementation "com.just.agentweb:agentweb:$rootProject.agentWebVersion"
 
     //di
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
@@ -75,6 +81,9 @@ dependencies {
     implementation "org.glassfish:javax.annotation:$rootProject.javaxVersion"
     implementation "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    //dao
+    implementation "org.greenrobot:greendao:$rootProject.greendaoVersion"
 
     //unit test
     testImplementation 'junit:junit:4.12'

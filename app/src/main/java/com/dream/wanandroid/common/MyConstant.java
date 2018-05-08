@@ -106,9 +106,11 @@ public class MyConstant {
 
     public static final String SUPER_CHAPTER_NAME = "super_chapter_name";
 
-    static final String DB_NAME = "aws_wan_android.db";
+    public static final String DB_NAME = "wan_android.db";
 
     public static final String CURRENT_PAGE = "current_page";
 
     public static final String PROJECT_CURRENT_PAGE = "project_current_page";
+
+    public static final String SEARCH_PARAMS = "search_params";
 }

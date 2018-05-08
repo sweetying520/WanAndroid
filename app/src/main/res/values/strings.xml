@@ -71,4 +71,7 @@
     <string name="ok">OK</string>
     <string name="no">NO</string>
     <string name="logout_tint">Log out?</string>
+
+    <string name="share">Share</string>
+    <string name="open_it_with_browser">Open it with the system browser</string>
 </resources>
