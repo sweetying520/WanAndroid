@@ -5,8 +5,10 @@ import android.app.Activity;
 import com.dream.wanandroid.di.module.FragmentModule;
 import com.dream.wanandroid.di.scope.FragmentScope;
 import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
+import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyListFragment;
 import com.dream.wanandroid.ui.like.fragment.LikeFragment;
 import com.dream.wanandroid.ui.main.fragment.SearchDialogFragment;
+import com.dream.wanandroid.ui.main.fragment.SettingFragment;
 import com.dream.wanandroid.ui.main.fragment.UsageDialogFragment;
 import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
 import com.dream.wanandroid.ui.navigation.fragment.NavigationFragment;
@@ -79,5 +81,16 @@ public interface FragmentComponent {
      */
     void inject(LikeFragment likeFragment);
 
+    /**
+     *
+     * @param knowledgeHierarchyListFragment knowledgeHierarchyListFragment
+     */
+    void inject(KnowledgeHierarchyListFragment knowledgeHierarchyListFragment);
 
+
+    /**
+     *
+     * @param settingFragment settingFragment
+     */
+    void inject(SettingFragment settingFragment);
 }

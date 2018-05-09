@@ -70,4 +70,18 @@
 
     <string name="share">分享</string>
     <string name="open_it_with_browser">用系统浏览器打开</string>
+
+    //设置
+    <string name="setting_normal">通用设置</string>
+    <string name="setting_cache">自动缓存</string>
+    <string name="setting_image">无图模式</string>
+    <string name="setting_night">夜间模式</string>
+    <string name="setting_other">其它设置</string>
+    <string name="setting_feedback">意见反馈</string>
+    <string name="setting_clear">清除缓存</string>
+    <string name="send_email">选择邮件客户端:</string>
+
+    <string name="share_content">%1$s分享 【%2$s】专题：%3$s</string>
+    <string name="share_to">分享到: </string>
+    <string name="write_permission_not_allowed">获取写入权限失败</string>
 </resources>

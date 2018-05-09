@@ -90,6 +90,11 @@ public abstract class BaseFragment<P extends IBasePresenter> extends AbstractSim
     }
 
     @Override
+    public void reload() {
+
+    }
+
+    @Override
     public void showErrorMsg(String errorMsg) {
         if(isAdded()){
             CommonUtils.showSnackMessage(_mActivity,errorMsg);

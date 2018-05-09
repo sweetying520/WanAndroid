@@ -4,7 +4,7 @@ import com.dream.wanandroid.base.view.IBaseView;
 
 import io.reactivex.disposables.Disposable;
 
-/**
+/**IBasePresenter
  * Created by Administrator on 2018/4/27.
  */
 
@@ -12,7 +12,7 @@ public interface IBasePresenter<V extends IBaseView> {
 
     /**
      * 绑定View
-     * @param mView
+     * @param mView mView
      */
     void attachView(V mView);
 
@@ -30,6 +30,13 @@ public interface IBasePresenter<V extends IBaseView> {
     boolean getLoginStatus();
 
     String getLoginUsername();
+
+
+    boolean getAutoCacheState();
+
+    boolean getNoImageState();
+
+    boolean getNightModeState();
 
 
 }

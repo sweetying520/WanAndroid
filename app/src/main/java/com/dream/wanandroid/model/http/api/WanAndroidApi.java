@@ -139,4 +139,13 @@ public interface WanAndroidApi {
     @FormUrlEncoded
     @POST("user/register")
     Observable<BaseResponse<LoginData>> getRegisterData(@FieldMap Map<String,String> registerParams);
+
+    /**
+     *
+     * @param page 页数
+     * @param cid cid
+     * @return 体系三级分类数据
+     */
+    @GET("article/list/{page}/json")
+    Observable<BaseResponse<FeedArticleListData>> getHierarchyListData(@Path("page") int page,@Query("cid") int cid);
 }

@@ -1,6 +1,7 @@
 package com.dream.wanandroid.ui.hierarchy.fragment;
 
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.dream.wanandroid.contract.hierarchy.KnowledgeHierarchyContract;
 import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.hierarchy.HierarchyData;
 import com.dream.wanandroid.presenter.hierarchy.KnowledgeHierarchyPresenter;
+import com.dream.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
 import com.dream.wanandroid.ui.hierarchy.adapter.KnowledgeHierarchyAdapter;
 import com.dream.wanandroid.utils.CommonUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -72,7 +74,8 @@ public class KnowledgeHierarchyFragment extends AbstractRootFragment<KnowledgeHi
         dataList = new ArrayList<>();
         mAdapter = new KnowledgeHierarchyAdapter(dataList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
-
+            ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(_mActivity, view, getString(R.string.share_view));
+            KnowledgeHierarchyDetailActivity.start(_mActivity,activityOptions,mAdapter.getData().get(position));
         });
         knowledgeHierarchyRv.setLayoutManager(new LinearLayoutManager(_mActivity));
         knowledgeHierarchyRv.setAdapter(mAdapter);

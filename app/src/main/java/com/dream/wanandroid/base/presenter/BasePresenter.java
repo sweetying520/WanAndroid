@@ -6,7 +6,7 @@ import com.dream.wanandroid.model.DataManager;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
-/**
+/**BasePresenter
  * Created by Administrator on 2018/4/27.
  */
 
@@ -23,7 +23,7 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
 
     /**
      * 添加订阅者
-     * @param disposable
+     * @param disposable disposable
      */
     protected void addSubscribe(Disposable disposable){
         if(mCompositeDisposable == null){
@@ -34,7 +34,7 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
 
     /**
      * 绑定View
-     * @param mView
+     * @param mView mView
      */
     @Override
     public void attachView(V mView) {
@@ -75,5 +75,20 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
     @Override
     public String getLoginUsername() {
         return mDataManager.getLoginUsername();
+    }
+
+    @Override
+    public boolean getAutoCacheState() {
+        return mDataManager.getAutoCacheState();
+    }
+
+    @Override
+    public boolean getNightModeState() {
+        return mDataManager.getNightModeState();
+    }
+
+    @Override
+    public boolean getNoImageState() {
+        return mDataManager.getNoImageState();
     }
 }

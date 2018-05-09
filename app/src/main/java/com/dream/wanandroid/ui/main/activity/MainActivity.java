@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +30,7 @@ import com.dream.wanandroid.presenter.main.MainPresenter;
 import com.dream.wanandroid.ui.hierarchy.fragment.KnowledgeHierarchyFragment;
 import com.dream.wanandroid.ui.like.fragment.LikeFragment;
 import com.dream.wanandroid.ui.main.fragment.SearchDialogFragment;
+import com.dream.wanandroid.ui.main.fragment.SettingFragment;
 import com.dream.wanandroid.ui.main.fragment.UsageDialogFragment;
 import com.dream.wanandroid.ui.mainpager.fragment.HomePagerFragment;
 import com.dream.wanandroid.ui.navigation.fragment.NavigationFragment;
@@ -195,15 +195,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private void switchCollect() {
         tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.collect));
         swicthFragment(MyConstant.TYPE_COLLECT);
-        drawerMain.closeDrawer(Gravity.START);
+        drawerMain.closeDrawers();
     }
 
     private void startMainPager(){
         tvToolbarTitle.setText(WanAndroidApp.getInstance().getString(R.string.home));
         bottomNavView.setSelectedItemId(R.id.tab_home);
-        drawerMain.closeDrawer(Gravity.START);
+        drawerMain.closeDrawers();
     }
 
+    private void switchSetting(){
+        tvToolbarTitle.setText(getString(R.string.setting));
+        swicthFragment(MyConstant.TYPE_SETTING);
+        drawerMain.closeDrawers();
+    }
 
 
 
@@ -213,10 +218,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         navigationFragment = NavigationFragment.getInstance(null, null);
         projectFragment = ProjectFragment.getInstance(null, null);
         LikeFragment likeFragment = LikeFragment.getInstance(null, null);
+        SettingFragment settingFragment = SettingFragment.getInstance(null,null);
         fragmentList.add(knowledgeHierarchyFragment);
         fragmentList.add(navigationFragment);
         fragmentList.add(projectFragment);
         fragmentList.add(likeFragment);
+        fragmentList.add(settingFragment);
     }
 
     private void init() {
@@ -326,11 +333,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             switchCollect();
             return true;
         });
-//
-//        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
-//
-//            return true;
-//        });
+
+        navView.getMenu().findItem(R.id.setting).setOnMenuItemClickListener(item -> {
+            switchSetting();
+            return true;
+        });
 
         navView.getMenu().findItem(R.id.about).setOnMenuItemClickListener(item -> {
             startActivity(new Intent(this, AboutActivity.class));

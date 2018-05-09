@@ -114,4 +114,12 @@ public interface HttpHelper {
      * @return 注册
      */
     Observable<BaseResponse<LoginData>> getRegisterData(Map<String,String> registerParams);
+
+    /**
+     *
+     * @param page 页数
+     * @param cid cid
+     * @return 体系三级分类数据
+     */
+    Observable<BaseResponse<FeedArticleListData>> getHierarchyListData(int page,int cid);
 }

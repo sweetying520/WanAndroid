@@ -51,6 +51,9 @@
         <activity android:name=".ui.main.activity.ArticleDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.hierarchy.activity.KnowledgeHierarchyDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
     </application>
 

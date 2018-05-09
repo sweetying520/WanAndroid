@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.dream.wanandroid.R;
 import com.dream.wanandroid.model.dao.HistoryData;
-import com.dream.wanandroid.ui.main.SearchHistoryViewHolder;
+import com.dream.wanandroid.ui.main.viewholder.SearchHistoryViewHolder;
 import com.dream.wanandroid.utils.CommonUtils;
 
 import java.util.List;

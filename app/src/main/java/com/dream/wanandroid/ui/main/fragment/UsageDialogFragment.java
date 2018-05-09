@@ -1,5 +1,6 @@
 package com.dream.wanandroid.ui.main.fragment;
 
+import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +19,7 @@ import com.dream.wanandroid.contract.main.UsageDialogContract;
 import com.dream.wanandroid.model.bean.BaseResponse;
 import com.dream.wanandroid.model.bean.main.often.OftenUseData;
 import com.dream.wanandroid.presenter.main.UsageDialogPresenter;
+import com.dream.wanandroid.ui.main.activity.ArticleDetailActivity;
 import com.dream.wanandroid.utils.CommonUtils;
 import com.dream.wanandroid.widget.CircularRevealAnim;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -48,7 +50,7 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NO_FRAME,R.style.DialogStyle);
+        setStyle(STYLE_NO_FRAME, R.style.DialogStyle);
     }
 
     @Override
@@ -67,7 +69,7 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
         Window window = getDialog().getWindow();
         int widthPixels = getResources().getDisplayMetrics().widthPixels;
         assert window != null;
-        window.setLayout((int) (widthPixels*0.98), WindowManager.LayoutParams.MATCH_PARENT);
+        window.setLayout((int) (widthPixels * 0.98), WindowManager.LayoutParams.MATCH_PARENT);
         window.setGravity(Gravity.TOP);
     }
 
@@ -93,7 +95,7 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
     @Override
     public boolean onPreDraw() {
         tvToolbarTitle.getViewTreeObserver().removeOnPreDrawListener(this);
-        circularRevealAnim.show(tvToolbarTitle,rootView);
+        circularRevealAnim.show(tvToolbarTitle, rootView);
         return true;
     }
 
@@ -109,15 +111,15 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
 
     private void initToolbar() {
         toolbar.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.white));
-        toolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(),R.drawable.ic_arrow_back_grey_24dp));
+        toolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_arrow_back_grey_24dp));
         tvToolbarTitle.setText(getString(R.string.useful_sites));
-        tvToolbarTitle.setTextColor(ContextCompat.getColor(getActivity(),R.color.title_black));
-        toolbar.setNavigationOnClickListener(v -> circularRevealAnim.hide(tvToolbarTitle,rootView));
+        tvToolbarTitle.setTextColor(ContextCompat.getColor(getActivity(), R.color.title_black));
+        toolbar.setNavigationOnClickListener(v -> circularRevealAnim.hide(tvToolbarTitle, rootView));
     }
 
     @Override
     public void showUsageData(BaseResponse<List<OftenUseData>> listBaseResponse) {
-        if(listBaseResponse == null || listBaseResponse.getData() == null){
+        if (listBaseResponse == null || listBaseResponse.getData() == null) {
             showUsageDataFailed();
             return;
         }
@@ -126,10 +128,25 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
 
             @Override
             public View getView(FlowLayout parent, int position, OftenUseData oftenUseData) {
-                TextView tvTag = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.item_flowlayout_tag,parent,false);
+                TextView tvTag = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.item_flowlayout_tag, parent, false);
                 tvTag.setText(oftenUseData.getName());
-                tvTag.setTextColor(ContextCompat.getColor(getActivity(),R.color.white));
+                tvTag.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
                 tvTag.setBackgroundColor(CommonUtils.randomTagColor());
+                flUsage.setOnTagClickListener((view, position1, parent1) -> {
+                    ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, getString(R.string.share_view));
+                    ArticleDetailActivity.start(
+                            getActivity(),
+                            activityOptions,
+                            listBaseResponse.getData().get(position1).getId(),
+                            listBaseResponse.getData().get(position1).getName(),
+                            listBaseResponse.getData().get(position1).getLink(),
+                            false,
+                            false,
+                            true
+
+                    );
+                    return true;
+                });
                 return tvTag;
             }
         });
@@ -137,7 +154,7 @@ public class UsageDialogFragment extends BaseDialogFragment<UsageDialogPresenter
 
     @Override
     public void showUsageDataFailed() {
-        CommonUtils.showSnackMessage(getActivity(),getString(R.string.failed_to_obtain_useful_sites_data));
+        CommonUtils.showSnackMessage(getActivity(), getString(R.string.failed_to_obtain_useful_sites_data));
     }
 
 

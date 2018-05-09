@@ -81,6 +81,36 @@ public class DataManager implements HttpHelper,PreferenceHelper,DbHelper{
         return mPreferenceHelper.getLoginStatus();
     }
 
+    @Override
+    public void setAutoCacheState(boolean isAutoCache) {
+        mPreferenceHelper.setAutoCacheState(isAutoCache);
+    }
+
+    @Override
+    public boolean getAutoCacheState() {
+        return mPreferenceHelper.getAutoCacheState();
+    }
+
+    @Override
+    public void setNoImageState(boolean isNoImageState) {
+        mPreferenceHelper.setNoImageState(isNoImageState);
+    }
+
+    @Override
+    public boolean getNoImageState() {
+        return mPreferenceHelper.getNoImageState();
+    }
+
+    @Override
+    public void setNightModeState(boolean isNightModeState) {
+        mPreferenceHelper.setNightModeState(isNightModeState);
+    }
+
+    @Override
+    public boolean getNightModeState() {
+        return mPreferenceHelper.getNightModeState();
+    }
+
 
     @Override
     public Observable<BaseResponse<FeedArticleListData>> getFeedArticleList(int page) {
@@ -145,6 +175,11 @@ public class DataManager implements HttpHelper,PreferenceHelper,DbHelper{
     @Override
     public Observable<BaseResponse<LoginData>> getRegisterData(Map<String, String> registerParams) {
         return mHttpHelper.getRegisterData(registerParams);
+    }
+
+    @Override
+    public Observable<BaseResponse<FeedArticleListData>> getHierarchyListData(int page, int cid) {
+        return mHttpHelper.getHierarchyListData(page,cid);
     }
 
     @Override

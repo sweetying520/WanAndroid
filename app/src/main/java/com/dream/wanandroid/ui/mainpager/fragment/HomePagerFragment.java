@@ -1,5 +1,6 @@
 package com.dream.wanandroid.ui.mainpager.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -109,7 +110,7 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
         mHomePagerAdapter = new HomePagerAdapter(R.layout.item_home_pager, dataList);
 
 
-        View headView = LayoutInflater.from(_mActivity).inflate(R.layout.item_home_banner, null);
+        @SuppressLint("InflateParams") View headView = LayoutInflater.from(_mActivity).inflate(R.layout.item_home_banner, null);
         mBanner = headView.findViewById(R.id.banner);
         mHomePagerAdapter.addHeaderView(headView);
 
@@ -217,6 +218,15 @@ public class HomePagerFragment extends AbstractRootFragment<HomePagerPresenter> 
         //设置指示器的位置
         mBanner.setIndicatorGravity(BannerConfig.CENTER);
         mBanner.start();
+
+        mBanner.setOnBannerListener(position -> ArticleDetailActivity.start(_mActivity,
+                null,
+                0,
+                bannerResponse.getData().get(position).getTitle(),
+                bannerResponse.getData().get(position).getUrl(),
+                false,
+                false,
+                true));
 
 
     }

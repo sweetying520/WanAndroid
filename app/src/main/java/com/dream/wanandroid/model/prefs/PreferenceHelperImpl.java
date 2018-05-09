@@ -62,4 +62,34 @@ public class PreferenceHelperImpl implements PreferenceHelper {
     public boolean getLoginStatus() {
         return mPreferences.getBoolean(MyConstant.LOGIN_STATUS, false);
     }
+
+    @Override
+    public void setAutoCacheState(boolean isAutoCache) {
+        mPreferences.edit().putBoolean(MyConstant.AUTO_CACHE_STATE,isAutoCache).apply();
+    }
+
+    @Override
+    public boolean getAutoCacheState() {
+        return mPreferences.getBoolean(MyConstant.AUTO_CACHE_STATE,true);
+    }
+
+    @Override
+    public void setNoImageState(boolean isNoImageState) {
+        mPreferences.edit().putBoolean(MyConstant.NO_IMAGE_STATE,isNoImageState).apply();
+    }
+
+    @Override
+    public boolean getNoImageState() {
+        return mPreferences.getBoolean(MyConstant.NO_IMAGE_STATE,false);
+    }
+
+    @Override
+    public void setNightModeState(boolean isNightModeState) {
+        mPreferences.edit().putBoolean(MyConstant.NIGHT_MODE_STATE,isNightModeState).apply();
+    }
+
+    @Override
+    public boolean getNightModeState() {
+        return mPreferences.getBoolean(MyConstant.NIGHT_MODE_STATE, false);
+    }
 }

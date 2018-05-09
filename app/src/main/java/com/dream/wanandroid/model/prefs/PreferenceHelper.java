@@ -32,6 +32,18 @@ public interface PreferenceHelper {
 
     boolean getLoginStatus();
 
+    void setAutoCacheState(boolean isAutoCache);
+
+    boolean getAutoCacheState();
+
+    void setNoImageState(boolean isNoImageState);
+
+    boolean getNoImageState();
+
+    void setNightModeState(boolean isNightModeState);
+
+    boolean getNightModeState();
+
 
 
 

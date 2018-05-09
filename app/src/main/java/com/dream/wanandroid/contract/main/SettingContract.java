@@ -2,21 +2,19 @@ package com.dream.wanandroid.contract.main;
 
 import com.dream.wanandroid.base.presenter.IBasePresenter;
 import com.dream.wanandroid.base.view.IBaseView;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 /**
- * Created by Administrator on 2018/5/8.
+ * Created by Administrator on 2018/5/9.
  */
 
-public interface ArticleDetailContract {
+public interface SettingContract {
     interface View extends IBaseView{
-        void shareEvent();
-
-        void shareFailed();
 
     }
 
     interface Presenter extends IBasePresenter<View>{
-        void shareWithPermission(RxPermissions rxPermissions);
+        void setAutoCacheState(boolean isAutoCache);
+        void setNoImageState(boolean isNoImageState);
+        void setNightMode(boolean isNightMode);
     }
 }

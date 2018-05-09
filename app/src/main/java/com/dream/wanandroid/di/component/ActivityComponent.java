@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.dream.wanandroid.di.module.ActivityModule;
 import com.dream.wanandroid.di.scope.ActivityScope;
+import com.dream.wanandroid.ui.hierarchy.activity.KnowledgeHierarchyDetailActivity;
 import com.dream.wanandroid.ui.main.activity.ArticleDetailActivity;
 import com.dream.wanandroid.ui.main.activity.LoginActivity;
 import com.dream.wanandroid.ui.main.activity.SearchListActivity;
@@ -61,5 +62,12 @@ public interface ActivityComponent {
      * @param  articleDetailActivity articleDetailActivity
      */
     void inject(ArticleDetailActivity articleDetailActivity);
+
+    /**
+     * 注入KnowledgeHierarchyDetailActivity所需的依赖
+     *
+     * @param  knowledgeHierarchyDetailActivity knowledgeHierarchyDetailActivity
+     */
+    void inject(KnowledgeHierarchyDetailActivity knowledgeHierarchyDetailActivity);
 
 }

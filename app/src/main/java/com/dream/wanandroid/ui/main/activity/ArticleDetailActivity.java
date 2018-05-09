@@ -1,14 +1,17 @@
 package com.dream.wanandroid.ui.main.activity;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -22,10 +25,12 @@ import com.dream.wanandroid.presenter.main.ArticleDetailPresenter;
 import com.dream.wanandroid.utils.CommonUtils;
 import com.dream.wanandroid.utils.StatusBarUtils;
 import com.just.agentweb.AgentWeb;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
 
-/**ArticleDetailActivity
+/**
+ * ArticleDetailActivity
  * Created by Administrator on 2018/5/8.
  */
 
@@ -58,6 +63,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void initEventAndData() {
         mContext = this;
@@ -79,16 +85,30 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
         WebSettings mSettings = mWebView.getSettings();
 
         //加载有图模式
-        mSettings.setBlockNetworkImage(false);
-
-        mSettings.setAppCacheEnabled(true);
-        mSettings.setDomStorageEnabled(true);
-        mSettings.setDatabaseEnabled(true);
-        if(CommonUtils.isNetworkConnected()){
-            mSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        }else {
-            mSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        if (mPresenter.getNoImageState()) {
+            mSettings.setBlockNetworkImage(true);
+        } else {
+            mSettings.setBlockNetworkImage(false);
         }
+
+
+        //是否自动缓存
+        if (mPresenter.getAutoCacheState()) {
+            mSettings.setAppCacheEnabled(true);
+            mSettings.setDomStorageEnabled(true);
+            mSettings.setDatabaseEnabled(true);
+            if (CommonUtils.isNetworkConnected()) {
+                mSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+            } else {
+                mSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            }
+        } else {
+            mSettings.setAppCacheEnabled(true);
+            mSettings.setDomStorageEnabled(true);
+            mSettings.setDatabaseEnabled(true);
+            mSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        }
+
 
         mSettings.setJavaScriptEnabled(true);
         mSettings.setSupportZoom(true);
@@ -108,7 +128,7 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return mAgentWeb.handleKeyEvent(keyCode,event) || super.onKeyDown(keyCode,event);
+        return mAgentWeb.handleKeyEvent(keyCode, event) || super.onKeyDown(keyCode, event);
     }
 
     private void initIntentData() {
@@ -123,37 +143,50 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     }
 
     private void initToolbar() {
-        if(!TextUtils.isEmpty(articleTitle)){
-            setToolBar(toolbar,articleTitle);
+        if (!TextUtils.isEmpty(articleTitle)) {
+            setToolBar(toolbar, articleTitle);
         }
 
         StatusBarUtils.immersive(this);
-        StatusBarUtils.setPaddingSmart(mContext,toolbar);
+        StatusBarUtils.setPaddingSmart(mContext, toolbar);
 
         toolbar.setNavigationOnClickListener(v -> onBackPressedSupport());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if(!isCollectSite){
-            getMenuInflater().inflate(R.menu.menu_article,menu);
-        }else {
-            getMenuInflater().inflate(R.menu.menu_article_common,menu);
+        if (!isCollectSite) {
+            getMenuInflater().inflate(R.menu.menu_article, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.menu_article_common, menu);
         }
         return true;
     }
 
-    public static void start(Context mContext, ActivityOptions activityOptions, int id, String articleTitle, String articleLink, boolean isCollect, boolean isCollectPage, boolean isCollectSite){
-        Intent intent = new Intent(mContext,ArticleDetailActivity.class);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.share:
+                mPresenter.shareWithPermission(new RxPermissions(this));
+                break;
+            case R.id.open_in_browser:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(articleLink)));
+                break;
+        }
+        return true;
+    }
+
+    public static void start(Context mContext, ActivityOptions activityOptions, int id, String articleTitle, String articleLink, boolean isCollect, boolean isCollectPage, boolean isCollectSite) {
+        Intent intent = new Intent(mContext, ArticleDetailActivity.class);
         intent.putExtra(MyConstant.ARTICLE_ID, id);
         intent.putExtra(MyConstant.ARTICLE_TITLE, articleTitle);
         intent.putExtra(MyConstant.ARTICLE_LINK, articleLink);
         intent.putExtra(MyConstant.IS_COLLECT, isCollect);
         intent.putExtra(MyConstant.IS_COLLECT_PAGE, isCollectPage);
         intent.putExtra(MyConstant.IS_COMMON_SITE, isCollectSite);
-        if(activityOptions != null && !Build.BOARD.contains("samsung") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            mContext.startActivity(intent,activityOptions.toBundle());
-        }else {
+        if (activityOptions != null && !Build.BOARD.contains("samsung") && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mContext.startActivity(intent, activityOptions.toBundle());
+        } else {
             mContext.startActivity(intent);
         }
 
@@ -175,5 +208,18 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailPresenter> 
     protected void onResume() {
         mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
+    }
+
+    @Override
+    public void shareEvent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT,getString(R.string.share_content,getString(R.string.app_name),articleTitle,articleLink));
+        intent.setType("text/plain");
+        startActivity(Intent.createChooser(intent,getString(R.string.share_to)));
+    }
+
+    @Override
+    public void shareFailed() {
+        CommonUtils.showMessage(this,getString(R.string.write_permission_not_allowed));
     }
 }

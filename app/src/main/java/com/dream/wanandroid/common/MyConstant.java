@@ -15,7 +15,9 @@ import java.io.File;
 public class MyConstant {
 
 
-    public static String CHACHE_PATH = WanAndroidApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "WanAndroidCache";
+
+    public static String PATH_DATA = WanAndroidApp.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
+    public static String PATH_CACHE = PATH_DATA + File.separator + "WanAndroidNetCache";
 
     public static final String COOKIE = "Cookie";
 

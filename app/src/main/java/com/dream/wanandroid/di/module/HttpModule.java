@@ -68,7 +68,7 @@ public class HttpModule {
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             builder.addInterceptor(httpLoggingInterceptor);
         }
-        File cacheFile = new File(MyConstant.CHACHE_PATH);
+        File cacheFile = new File(MyConstant.PATH_CACHE);
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50);
         Interceptor cacheInterceptor = chain -> {
             Request request = chain.request();

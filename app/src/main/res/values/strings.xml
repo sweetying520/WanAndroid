@@ -74,4 +74,17 @@
 
     <string name="share">Share</string>
     <string name="open_it_with_browser">Open it with the system browser</string>
+
+    //Setting
+    <string name="setting_normal">General settings</string>
+    <string name="setting_cache">Automatic cache</string>
+    <string name="setting_image">No Pic model</string>
+    <string name="setting_night">Night mode</string>
+    <string name="setting_other">Other settings</string>
+    <string name="setting_feedback">Feedback</string>
+    <string name="setting_clear">Clear cache</string>
+    <string name="send_email">Select the email client:</string>
+    <string name="share_content">%1$Share 【%2$s】special top：%3$s</string>
+    <string name="share_to">Share to: </string>
+    <string name="write_permission_not_allowed">Gets write permission failed</string>
 </resources>

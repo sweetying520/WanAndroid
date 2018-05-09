@@ -97,4 +97,9 @@ public class RetrofitHelper implements HttpHelper{
     public Observable<BaseResponse<LoginData>> getRegisterData(Map<String, String> registerParams) {
         return mWanAndroidApi.getRegisterData(registerParams);
     }
+
+    @Override
+    public Observable<BaseResponse<FeedArticleListData>> getHierarchyListData(int page, int cid) {
+        return mWanAndroidApi.getHierarchyListData(page,cid);
+    }
 }
